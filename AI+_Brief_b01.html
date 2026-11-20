@@ -320,11 +320,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* 2. Masthead */
 .masthead {
-  display: grid;
-  grid-template-columns: 210px minmax(0, 1fr) 210px;
-  align-items: stretch;
-  gap: 20px;
-  padding: 28px 0 18px;
+  display: block;
+  text-align: center;
+  padding: 28px 0 20px;
 }
 .ear {
   border: 1px solid var(--rule);
@@ -1250,20 +1248,10 @@ table.news-tbl th {
 
   <!-- 2. 제호 -->
   <section class="masthead" aria-label="제호">
-    <div class="ear">
-      <div class="ear-label">10월 ICT 수출</div>
-      <div class="ear-val num">703.5<small>억$</small></div>
-      <div class="ear-sub">전년 대비 +202% 역대 최대 · 반도체 80.3%</div>
-    </div>
     <div class="mast-center">
       <div class="mast-kicker">AI+ICT News Weekly</div>
       <h1 class="mast-title"><span class="brand-accent">AI+</span> Brief</h1>
       <p class="mast-desc">한 주의 AI·ICT 동향을 신문 지면으로 엮습니다</p>
-    </div>
-    <div class="ear">
-      <div class="ear-label">공공시스템 자바 비중</div>
-      <div class="ear-val num">71.3<small>%</small></div>
-      <div class="ear-sub">1만5618개 중 1만1132개 · Java4Shell 비상</div>
     </div>
   </section>
 
