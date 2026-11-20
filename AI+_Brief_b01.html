@@ -1201,7 +1201,12 @@ table.news-tbl th {
   .topbar-controls { margin-left: 0; }
 }
 </style>
-<script data-goatcounter="https://yangkoon.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+  window.goatcounter = {
+    path: function(p) { return p.replace(/\.html$/, ''); }
+  };
+</script>
+<script data-goatcounter="https://yangkoon.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 
