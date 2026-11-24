@@ -1224,11 +1224,15 @@ table.news-tbl th {
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 .ed-promo--aec { --promo: #a3262a; }
+.ed-promo--hub { --promo: #23426b; justify-self: start; }
+.ed-promo--hub .ed-promo-title { font-size: 17px; line-height: 26.4px; letter-spacing: -0.02em; }
 :root[data-theme="dark"] .ed-promo--ai { --promo: #60a5fa; }
 :root[data-theme="dark"] .ed-promo--aec { --promo: #e0615c; }
+:root[data-theme="dark"] .ed-promo--hub { --promo: #8cb4e8; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .ed-promo--ai { --promo: #60a5fa; }
   :root:not([data-theme="light"]) .ed-promo--aec { --promo: #e0615c; }
+  :root:not([data-theme="light"]) .ed-promo--hub { --promo: #8cb4e8; }
 }
 .ed-promo:hover {
   color: var(--ink);
@@ -1310,7 +1314,11 @@ table.news-tbl th {
 
   <!-- 2. 제호 -->
   <section class="masthead" aria-label="제호">
-    <div class="mast-side" aria-hidden="true"></div>
+    <a class="ed-promo ed-promo--hub" href="https://brief.yangkoon.com" target="_blank" rel="noopener" aria-label="Brief 아카이브 허브 (brief.yangkoon.com)">
+      <span class="ed-promo-kicker">ARCHIVE · HUB</span>
+      <span class="ed-promo-title"><span class="ed-promo-mark">brief</span>.yangkoon.com</span>
+      <span class="ed-promo-desc">지난호 보기</span>
+    </a>
     <div class="mast-center">
       <div class="mast-kicker">AI+ICT News Weekly</div>
       <h1 class="mast-title"><span class="brand-accent">AI+</span> Brief</h1>

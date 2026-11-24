@@ -1198,6 +1198,71 @@ table.news-tbl th {
   .num-grid { grid-template-columns: 1fr; }
   .topbar-controls { margin-left: 0; }
 }
+
+/* Sister-edition promo banner (masthead) */
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+}
+.ed-promo {
+  --promo: #1d4ed8;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  max-width: 220px;
+  padding: 12px 15px 11px;
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-top: 3px solid var(--promo);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.ed-promo--aec { --promo: #a3262a; }
+.ed-promo--hub { --promo: #23426b; justify-self: start; }
+.ed-promo--hub .ed-promo-title { font-size: 17px; line-height: 26.4px; letter-spacing: -0.02em; }
+:root[data-theme="dark"] .ed-promo--ai { --promo: #60a5fa; }
+:root[data-theme="dark"] .ed-promo--aec { --promo: #e0615c; }
+:root[data-theme="dark"] .ed-promo--hub { --promo: #8cb4e8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ed-promo--ai { --promo: #60a5fa; }
+  :root:not([data-theme="light"]) .ed-promo--aec { --promo: #e0615c; }
+  :root:not([data-theme="light"]) .ed-promo--hub { --promo: #8cb4e8; }
+}
+.ed-promo:hover {
+  color: var(--ink);
+  border-color: var(--promo);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+.ed-promo-kicker { font-family: var(--sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: var(--mute); }
+.ed-promo-title { font-family: var(--serif); font-weight: 900; font-size: 24px; line-height: 1.1; letter-spacing: -0.03em; }
+.ed-promo-mark { color: var(--promo); }
+.ed-promo-desc { font-family: var(--sans); font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+.ed-promo-cta {
+  margin-top: 6px;
+  padding-top: 7px;
+  border-top: 1px dashed var(--hair);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--promo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ed-promo-cta .arr { transition: transform 0.15s ease; }
+.ed-promo:hover .ed-promo-cta .arr { transform: translateX(4px); }
+@media (max-width: 960px) {
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .mast-side { display: none; }
+  .ed-promo { justify-self: center; max-width: 340px; }
+}
 </style>
 <script>
   window.goatcounter = {
@@ -1248,11 +1313,21 @@ table.news-tbl th {
 
   <!-- 2. 제호 -->
   <section class="masthead" aria-label="제호">
+    <a class="ed-promo ed-promo--hub" href="https://brief.yangkoon.com" target="_blank" rel="noopener" aria-label="Brief 아카이브 허브 (brief.yangkoon.com)">
+      <span class="ed-promo-kicker">ARCHIVE · HUB</span>
+      <span class="ed-promo-title"><span class="ed-promo-mark">brief</span>.yangkoon.com</span>
+      <span class="ed-promo-desc">지난호 보기</span>
+    </a>
     <div class="mast-center">
       <div class="mast-kicker">AI+ICT News Weekly</div>
       <h1 class="mast-title"><span class="brand-accent">AI+</span> Brief</h1>
       <p class="mast-desc">한 주의 AI·ICT 동향을 신문 지면으로 엮습니다</p>
     </div>
+    <a class="ed-promo ed-promo--aec" href="https://yangkoon.github.io/brief/AEC_Brief_00.html" target="_blank" rel="noopener" aria-label="다른 에디션 AEC Brief 읽기 (yangkoon.github.io/brief/AEC_Brief_00.html)">
+      <span class="ed-promo-kicker">함께 읽기</span>
+      <span class="ed-promo-title"><span class="ed-promo-mark">AEC</span> Brief</span>
+      <span class="ed-promo-desc">건축·스마트건설 동향</span>
+    </a>
   </section>
 
   <!-- 3. 판 정보 줄 -->
