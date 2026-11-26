@@ -207,7 +207,7 @@ def _truncate(text: str, max_len: int) -> str:
 def build_kakao_template(
     meta: BriefMeta, token_notice: str | None = None
 ) -> dict:
-    """카카오톡 기본 텍스트 템플릿(최대 200자 + 버튼 2개)을 생성합니다."""
+    """이모지 없는 담백한 카카오톡 피드 카드형(object_type="feed") 템플릿을 생성합니다."""
     edition_part = meta.edition_date.split("·")[0].strip() if meta.edition_date else ""
     date_part = (
         meta.edition_date.split("·", 1)[1].strip()
@@ -215,40 +215,54 @@ def build_kakao_template(
         else ""
     )
 
-    header = f"📰 [{meta.brand} {edition_part} 발행]".replace("  ", " ").strip()
-    lines = [header]
+    # 상단 볼드 제호 헤더 (카카오 profile_text 최대 16자)
+    if edition_part:
+        candidate = f"{meta.brand} · {edition_part}"
+        profile_header = (
+            candidate
+            if len(candidate) <= 16
+            else _truncate(f"{meta.brand} {edition_part}", 16)
+        )
+    else:
+        profile_header = _truncate(meta.brand, 16)
+
+    # 하단 보조 설명 (발행일 · 표지 지표)
+    desc_parts: list[str] = []
     if date_part:
-        lines.append(f"📅 {date_part}")
+        desc_parts.append(date_part)
     if meta.cover_value:
         if meta.cover_label:
-            lines.append(f"📊 {meta.cover_label}: {meta.cover_value}")
+            desc_parts.append(f"{meta.cover_label} {meta.cover_value}")
         else:
-            lines.append(f"📊 주요 지표: {meta.cover_value}")
+            desc_parts.append(meta.cover_value)
+    if token_notice:
+        desc_parts.append(token_notice)
 
-    prefix = "\n".join(lines) + "\n\n■ 1면 톱\n"
-    suffix = f"\n\n{token_notice}" if token_notice else ""
-
-    available_for_lead = KAKAO_TEXT_MAX_CHARS - len(prefix) - len(suffix)
-    lead_text = _truncate(meta.lead_title, max(20, available_for_lead))
-    full_text = _truncate(prefix + lead_text + suffix, KAKAO_TEXT_MAX_CHARS)
+    description = " · ".join(desc_parts)
 
     return {
-        "object_type": "text",
-        "text": full_text,
-        "link": {
-            "web_url": meta.page_url,
-            "mobile_web_url": meta.page_url,
+        "object_type": "feed",
+        "item_content": {
+            "profile_text": profile_header,
+        },
+        "content": {
+            "title": meta.lead_title,
+            "description": description,
+            "link": {
+                "web_url": meta.page_url,
+                "mobile_web_url": meta.page_url,
+            },
         },
         "buttons": [
             {
-                "title": "이번 호 전문 읽기",
+                "title": "전문 읽기",
                 "link": {
                     "web_url": meta.page_url,
                     "mobile_web_url": meta.page_url,
                 },
             },
             {
-                "title": "전체 아카이브",
+                "title": "아카이브",
                 "link": {
                     "web_url": meta.hub_url,
                     "mobile_web_url": meta.hub_url,
@@ -473,12 +487,19 @@ def main() -> int:
             tpl = build_kakao_template(meta)
             print("=" * 64)
             print(f"파일명 : {path.name}")
+            print(f"형태   : {tpl['object_type']}")
             print(f"링크   : {meta.page_url}")
-            print(f"글자수 : {len(tpl['text'])} / {KAKAO_TEXT_MAX_CHARS}자")
             print("-" * 64)
-            print(tpl["text"])
+            if tpl["object_type"] == "feed":
+                header = tpl.get("item_content", {}).get("profile_text", "")
+                if header:
+                    print(f"[헤더] {header}")
+                print(f"[제목] {tpl['content'].get('title', '')}")
+                print(f"[설명] {tpl['content'].get('description', '')}")
+            else:
+                print(tpl.get("text", ""))
             print("-" * 64)
-            print("버튼   :", [b["title"] + " -> " + b["link"]["web_url"] for b in tpl["buttons"]])
+            print("버튼   :", [b["title"] + " -> " + b["link"]["web_url"] for b in tpl.get("buttons", [])])
         print("=" * 64)
         return 0
 
@@ -510,7 +531,7 @@ def main() -> int:
         if not os.environ.get("GH_SECRET_PAT"):
             days_left = (int(refresh_expires_in) // 86400) if refresh_expires_in else 29
             if days_left <= 14:
-                token_notice = f"⚠️ 카톡 토큰 만료 {days_left}일 전 (시크릿 갱신 권장)"
+                token_notice = f"토큰 만료 {days_left}일 전"
     else:
         _write_github_output("token_rotated", "false")
 
