@@ -376,53 +376,94 @@ def build_telegram_message(meta: BriefMeta, max_visible_len: int = TELEGRAM_CAPT
     return html_text, reply_markup
 
 
-def normalize_chat_id(raw_chat_id: str) -> str:
-    val = raw_chat_id.strip()
+def normalize_bot_token(raw_token: str) -> str:
+    """@BotFather 안내 문구나 공백·따옴표가 함께 복사된 경우에도 순수 토큰만 안전하게 추출합니다."""
+    val = raw_token.strip().strip("\"'`")
     if not val:
         return ""
-    # https://t.me/channel_name 또는 t.me/channel_name 형태로 입력한 경우 @channel_name으로 자동 보정
-    m = re.match(r"^(?:https?://)?t\.me/([A-Za-z0-9_]+)/?$", val, re.I)
-    if m:
-        slug = m.group(1)
-        if not slug.startswith("+"):
-            return f"@{slug}"
+
+    # 1) 문장/URL 안에 '1234567890:AAH...' 형태의 토큰이 포함된 경우 추출
+    m = re.search(r"(?:bot)?(\d{6,15}:[A-Za-z0-9_-]{20,})", val)
+    if not m:
+        # 2) 콜론 앞뒤 등에 실수로 공백이 섞인 경우 공백 제거 후 재시도
+        compact = re.sub(r"\s+", "", val)
+        m = re.search(r"(?:bot)?(\d{6,15}:[A-Za-z0-9_-]{20,})", compact)
+
+    if not m:
+        raise ValueError(
+            "TELEGRAM_BOT_TOKEN 시크릿 값이 올바른 봇 토큰 형식이 아닙니다 (공백/문구가 섞였거나 '숫자ID:영문토큰' 형태가 아님).\n"
+            "해결 방법: 텔레그램 @BotFather 채팅창에서 'Use this token to access the HTTP API:' 바로 아래 줄의\n"
+            "'1234567890:AAH...' 형태 문자열만 복사해 GitHub Secrets -> TELEGRAM_BOT_TOKEN 에 다시 저장해 주세요."
+        )
+
+    cleaned = m.group(1)
+    if os.environ.get("GITHUB_ACTIONS") == "true" and cleaned != raw_token:
+        # 원본 시크릿에서 부분 문자열을 추출한 경우에도 GitHub Actions 로그에서 마스킹 보장
+        print(f"::add-mask::{cleaned}", flush=True)
+    return cleaned
+
+
+def normalize_chat_id(raw_chat_id: str) -> str:
+    val = raw_chat_id.strip().strip("\"'`")
+    if not val:
+        return ""
+    # 1) https://t.me/channel_name 형태가 포함된 경우 @channel_name으로 자동 보정 (+초대링크 제외)
+    m_url = re.search(r"(?:https?://)?t\.me/([A-Za-z0-9_]{4,})/?", val, re.I)
+    if m_url:
+        return f"@{m_url.group(1)}"
+    # 2) '-1001234567890' 등 숫자형 채널/그룹 ID 추출 (앞뒤 설명 문구 제거)
+    m_num = re.search(r"(-100\d{6,}|-?\d{6,})", val)
+    if m_num and (val.startswith("-") or val.isdigit() or "id" in val.lower()):
+        return m_num.group(1)
+    # 3) '@channel_name' 추출 (앞뒤 공백/설명 문구 제거)
+    m_at = re.search(r"(@[A-Za-z0-9_]{4,})", val)
+    if m_at:
+        return m_at.group(1)
     return val
 
 
 def resolve_channel_target(edition_key: str, cli_token: str = "", cli_chat_id: str = "") -> ChannelTarget | None:
     """에디션(aec / ai)에 맞는 봇 토큰과 채널 ID를 반환합니다."""
     env = os.environ
-    default_token = env.get("TELEGRAM_BOT_TOKEN", "").strip()
+    raw_default_tok = env.get("TELEGRAM_BOT_TOKEN", "").strip()
     default_chat = env.get("TELEGRAM_CHAT_ID", "").strip()
 
     if cli_token or cli_chat_id:
+        tok_src = cli_token.strip() or raw_default_tok
+        chat_src = cli_chat_id.strip() or default_chat
+        if not tok_src or not chat_src:
+            return None
         return ChannelTarget(
             edition_key=edition_key,
-            bot_token=cli_token or default_token,
-            chat_id=normalize_chat_id(cli_chat_id or default_chat),
+            bot_token=normalize_bot_token(tok_src),
+            chat_id=normalize_chat_id(chat_src),
         )
 
     if edition_key == "aec":
-        token = env.get("AEC_TELEGRAM_BOT_TOKEN", "").strip() or default_token
+        tok_src = env.get("AEC_TELEGRAM_BOT_TOKEN", "").strip() or raw_default_tok
         chat_id = normalize_chat_id(
             env.get("AEC_TELEGRAM_CHAT_ID", "").strip() or default_chat
         )
         thread_id = env.get("AEC_TELEGRAM_THREAD_ID", "").strip()
-        if not token or not chat_id:
+        if not tok_src or not chat_id:
             return None
-        return ChannelTarget("aec", token, chat_id, thread_id)
+        return ChannelTarget("aec", normalize_bot_token(tok_src), chat_id, thread_id)
 
     if edition_key == "ai":
-        token = env.get("AI_TELEGRAM_BOT_TOKEN", "").strip() or default_token
+        tok_src = env.get("AI_TELEGRAM_BOT_TOKEN", "").strip() or raw_default_tok
         # AI+ Brief는 전용 AI_TELEGRAM_CHAT_ID가 설정된 경우에만 발송 (AEC 채널 오발송 방지)
         chat_id = normalize_chat_id(env.get("AI_TELEGRAM_CHAT_ID", "").strip())
         thread_id = env.get("AI_TELEGRAM_THREAD_ID", "").strip()
-        if not token or not chat_id:
+        if not tok_src or not chat_id:
             return None
-        return ChannelTarget("ai", token, chat_id, thread_id)
+        return ChannelTarget("ai", normalize_bot_token(tok_src), chat_id, thread_id)
 
-    if default_token and default_chat:
-        return ChannelTarget(edition_key, default_token, normalize_chat_id(default_chat))
+    if raw_default_tok and default_chat:
+        return ChannelTarget(
+            edition_key,
+            normalize_bot_token(raw_default_tok),
+            normalize_chat_id(default_chat),
+        )
     return None
 
 
@@ -539,8 +580,32 @@ def _tg_post_multipart(
         ) from e
 
 
+def _list_bot_channels(bot_token: str) -> dict[str, tuple[str, str]]:
+    """getUpdates 이벤트에서 봇이 관리자로 추가된 채널/그룹 목록(id -> (title, username))을 수집합니다."""
+    channels: dict[str, tuple[str, str]] = {}
+    try:
+        updates = _tg_get_json(bot_token, "getUpdates").get("result", [])
+    except Exception:
+        return channels
+
+    for upd in updates:
+        for key in ("my_chat_member", "channel_post", "edited_channel_post", "message"):
+            obj = upd.get(key)
+            if not isinstance(obj, dict):
+                continue
+            chat = obj.get("chat")
+            if not isinstance(chat, dict) or "id" not in chat:
+                continue
+            if chat.get("type") in ("channel", "supergroup"):
+                cid = str(chat["id"])
+                title = str(chat.get("title") or "").strip()
+                uname = str(chat.get("username") or "").strip()
+                channels[cid] = (title, uname)
+    return channels
+
+
 def validate_target_not_self_bot(target: ChannelTarget) -> str:
-    """봇 정보를 확인하고 실수로 봇 자신의 아이디(@..._bot)를 CHAT_ID에 넣지 않았는지 점검합니다."""
+    """봇 정보를 확인하고 CHAT_ID 오입력(봇 자신 입력, 초대링크/채널명 입력 등)을 점검·보정합니다."""
     me_resp = _tg_get_json(target.bot_token, "getMe")
     bot_info = me_resp.get("result", {})
     bot_username = bot_info.get("username", "")
@@ -554,6 +619,23 @@ def validate_target_not_self_bot(target: ChannelTarget) -> str:
             f"  1) 텔레그램에서 새 '채널(Channel)'을 생성하고 @{bot_username} 을 관리자(메시지 게시 권한)로 추가하세요.\n"
             "  2) 공개 채널이면 '@채널아이디'를, 비공개 채널이면 '-100...' 형태의 숫자 ID를 TELEGRAM_CHAT_ID 시크릿에 등록하세요."
         )
+
+    # '@채널명'도 아니고 숫자 ID('-100...')도 아닌 경우 (예: 비공개 초대링크 t.me/+... 또는 채널 제목 입력)
+    if not target.chat_id.startswith("@") and not re.match(r"^-?\d+$", target.chat_id):
+        known_channels = _list_bot_channels(target.bot_token)
+        # 1) 채널 제목이 일치하는 경우 자동 매칭
+        for cid, (title, _uname) in known_channels.items():
+            if title and title.lower() == target.chat_id.strip().lower():
+                print(f"[chat] 채널 제목('{title}') 기반으로 숫자 Chat ID 자동 연결 완료: {cid}")
+                target.chat_id = cid
+                return bot_username
+        # 2) 비공개 초대링크(t.me/+...) 등을 넣었는데 봇에 연결된 채널이 정확히 1개인 경우 자동 매칭
+        if len(known_channels) == 1:
+            cid, (title, _uname) = next(iter(known_channels.items()))
+            print(f"[chat] 봇에 연결된 단일 채널('{title}')로 Chat ID 자동 연결 완료: {cid}")
+            target.chat_id = cid
+            return bot_username
+
     return bot_username
 
 
@@ -720,15 +802,19 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.discover_chats:
-        tok = (
+        tok_raw = (
             args.bot_token
             or os.environ.get("AEC_TELEGRAM_BOT_TOKEN", "").strip()
             or os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
         )
-        if not tok:
+        if not tok_raw:
             print("오류: --bot-token 또는 TELEGRAM_BOT_TOKEN 환경변수가 필요합니다.", file=sys.stderr)
             return 1
-        return discover_chats(tok)
+        try:
+            return discover_chats(normalize_bot_token(tok_raw))
+        except (ValueError, RuntimeError) as exc:
+            print(f"❌ {exc}", file=sys.stderr)
+            return 1
 
     repo_root = Path(__file__).resolve().parents[2]
     target_paths = resolve_input_files(args.files, repo_root)
@@ -768,11 +854,15 @@ def main() -> int:
     validated_tokens: dict[tuple[str, str], str] = {}
 
     for path in target_paths:
-        # 먼저 에디션만 판별해 미설정 채널(AI+)이면 불필요한 배포 대기 없이 건너뜀
         quick_brand_key, _ = _detect_edition(path.name, "")
-        target = resolve_channel_target(
-            quick_brand_key, cli_token=args.bot_token, cli_chat_id=args.chat_id
-        )
+        try:
+            target = resolve_channel_target(
+                quick_brand_key, cli_token=args.bot_token, cli_chat_id=args.chat_id
+            )
+        except ValueError as exc:
+            print(f"❌ {exc}", file=sys.stderr)
+            return 1
+
         if target is None:
             if quick_brand_key == "ai":
                 print(
@@ -788,21 +878,37 @@ def main() -> int:
             missing_aec = True
             continue
 
-        cache_key = (target.bot_token, target.chat_id)
-        if cache_key not in validated_tokens:
-            validated_tokens[cache_key] = validate_target_not_self_bot(target)
-        bot_uname = validated_tokens[cache_key]
+        try:
+            cache_key = (target.bot_token, target.chat_id)
+            if cache_key not in validated_tokens:
+                bot_u = validate_target_not_self_bot(target)
+                # target.chat_id가 자동 보정되었을 수 있으므로 보정된 키도 함께 캐시
+                validated_tokens[cache_key] = bot_u
+                validated_tokens[(target.bot_token, target.chat_id)] = bot_u
+            bot_uname = validated_tokens[(target.bot_token, target.chat_id)]
 
-        meta = parse_brief_html(
-            path,
-            repo_root=repo_root,
-            base_url=args.base_url,
-            wait_for_live=args.wait_for_live,
-            dry_run=False,
-            no_photo=args.no_photo,
-            force_thumbs=args.force_thumbs,
-        )
-        resp = send_brief_to_telegram(meta, target)
+            meta = parse_brief_html(
+                path,
+                repo_root=repo_root,
+                base_url=args.base_url,
+                wait_for_live=args.wait_for_live,
+                dry_run=False,
+                no_photo=args.no_photo,
+                force_thumbs=args.force_thumbs,
+            )
+            resp = send_brief_to_telegram(meta, target)
+        except RuntimeError as exc:
+            err_msg = str(exc)
+            print(f"❌ {err_msg}", file=sys.stderr)
+            if "chat not found" in err_msg.lower() or "찾을 수 없습니다" in err_msg:
+                known = _list_bot_channels(target.bot_token)
+                if known:
+                    print("\n📌 현재 봇이 감지한 채널 목록 (TELEGRAM_CHAT_ID에 아래 ID를 등록하세요):", file=sys.stderr)
+                    for cid, (title, uname) in known.items():
+                        u_part = f" / @{uname}" if uname else ""
+                        print(f"  - {cid} ({title}{u_part})", file=sys.stderr)
+            return 1
+
         if not resp.get("ok"):
             print(f"텔레그램 응답 오류 ({path.name}): {resp}", file=sys.stderr)
             return 1
