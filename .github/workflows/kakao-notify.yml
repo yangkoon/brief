@@ -20,7 +20,7 @@ on:
     - cron: '0 1 1,15 * *'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   notify-kakao:
@@ -47,16 +47,39 @@ jobs:
           fi
 
           # 기본은 신규 추가(--diff-filter=A)된 브리프만 발송.
-          # 단, 커밋 메시지에 [발송] 또는 [kakao]가 포함되면 수정본(AM)도 재발송.
+          # 단, 커밋 메시지에 [발송] 또는 [kakao]가 포함되면 수정본(AM)도 재발송 및 화면 재캡처.
           if echo "$COMMIT_MSG" | grep -Eq '\[(발송|kakao|KAKAO)\]'; then
             FILTER="AM"
+            echo "force_thumbs=true" >> "$GITHUB_OUTPUT"
           else
             FILTER="A"
+            echo "force_thumbs=false" >> "$GITHUB_OUTPUT"
           fi
 
           FILES=$(git diff --name-only --diff-filter="$FILTER" "$BASE_REF" "$AFTER_SHA" -- '*_Brief_*.html' | tr '\n' ' ' | xargs)
           echo "Detected files ($FILTER): ${FILES:-<none>}"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      - name: Render & push brief screen image (Push)
+        if: github.event_name == 'push' && steps.detect.outputs.files != ''
+        env:
+          TARGET_FILES: ${{ steps.detect.outputs.files }}
+          FORCE_THUMBS: ${{ steps.detect.outputs.force_thumbs }}
+        run: |
+          EXTRA_FLAG=""
+          if [ "$FORCE_THUMBS" = "true" ]; then
+            EXTRA_FLAG="--force-thumbs"
+          fi
+          # shellcheck disable=SC2086
+          python3 .github/scripts/send_kakao_brief.py --generate-thumbs $EXTRA_FLAG $TARGET_FILES
+          if [ -n "$(git status --porcelain thumbs/)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add thumbs/
+            git commit -m "Generate brief screen thumbnail [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
 
       - name: Send KakaoTalk message (Push)
         id: send_push
@@ -71,7 +94,7 @@ jobs:
           # shellcheck disable=SC2086
           python3 .github/scripts/send_kakao_brief.py --wait-for-live $TARGET_FILES
 
-      - name: Send KakaoTalk message (Manual Test / Dispatch)
+      - name: Render & Send KakaoTalk message (Manual Test / Dispatch)
         id: send_manual
         if: github.event_name == 'workflow_dispatch'
         env:
@@ -81,7 +104,16 @@ jobs:
           GH_SECRET_PAT: ${{ secrets.GH_SECRET_PAT }}
           INPUT_FILE: ${{ inputs.target_file }}
         run: |
-          python3 .github/scripts/send_kakao_brief.py "${INPUT_FILE:-latest}"
+          python3 .github/scripts/send_kakao_brief.py --generate-thumbs "${INPUT_FILE:-latest}"
+          if [ -n "$(git status --porcelain thumbs/)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add thumbs/
+            git commit -m "Generate brief screen thumbnail [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+          python3 .github/scripts/send_kakao_brief.py --wait-for-live "${INPUT_FILE:-latest}"
 
       - name: Periodic Refresh Token Keep-Alive
         id: send_schedule

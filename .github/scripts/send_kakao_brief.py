@@ -27,6 +27,8 @@ import re
 import sys
 import time
 import urllib.error
+import shutil
+import subprocess
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
@@ -39,6 +41,12 @@ KAKAO_SEND_ME_URL = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
 DEFAULT_REDIRECT_URI = "https://localhost:5000/oauth"
 HUB_URL = "https://brief.yangkoon.com"
 GH_PAGES_BASE = "https://yangkoon.github.io/brief"
+
+THUMBS_DIR_NAME = "thumbs"
+THUMB_VIEWPORT_W = 1080
+THUMB_VIEWPORT_H = 1080
+KAKAO_FEED_IMG_W = 800
+KAKAO_FEED_IMG_H = 800
 
 # 카카오톡 기본 텍스트 템플릿(object_type="text")의 최대 글자 수 제한
 KAKAO_TEXT_MAX_CHARS = 200
@@ -53,7 +61,69 @@ class BriefMeta:
     cover_value: str
     lead_title: str
     page_url: str
+    image_url: str = ""
     hub_url: str = HUB_URL
+
+
+def thumb_filename(filepath: Path) -> str:
+    """RFC2396 친화적인 순수 영문·숫자·밑줄 파일명을 반환합니다 (예: AIPlus_Brief_02.png)."""
+    safe_stem = filepath.stem.replace("+", "Plus")
+    safe_stem = re.sub(r"[^A-Za-z0-9_.-]", "_", safe_stem)
+    return f"{safe_stem}.png"
+
+
+def thumb_public_url(filepath: Path) -> str:
+    return f"{GH_PAGES_BASE}/{THUMBS_DIR_NAME}/{thumb_filename(filepath)}"
+
+
+def _find_chrome_binary() -> str | None:
+    for candidate in ("google-chrome", "google-chrome-stable", "chromium", "chromium-browser"):
+        found = shutil.which(candidate)
+        if found:
+            return found
+    return None
+
+
+def generate_thumbnail(
+    brief_path: Path,
+    repo_root: Path,
+    force: bool = False,
+) -> Path | None:
+    """헤드리스 Chrome으로 각 호 HTML의 1면 화면 캡처 이미지를 생성합니다."""
+    thumbs_dir = repo_root / THUMBS_DIR_NAME
+    thumbs_dir.mkdir(parents=True, exist_ok=True)
+    out_path = thumbs_dir / thumb_filename(brief_path)
+
+    if out_path.exists() and out_path.stat().st_size > 10_000 and not force:
+        print(f"[thumb] 기존 이미지 유지: {out_path.relative_to(repo_root)}")
+        return out_path
+
+    chrome = _find_chrome_binary()
+    if not chrome:
+        print("[thumb] 경고: google-chrome/chromium을 찾을 수 없어 캡처를 건너뜁니다.", file=sys.stderr)
+        return out_path if out_path.exists() else None
+
+    file_uri = brief_path.resolve().as_uri()
+    cmd = [
+        chrome,
+        "--headless=new",
+        "--no-sandbox",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--hide-scrollbars",
+        f"--window-size={THUMB_VIEWPORT_W},{THUMB_VIEWPORT_H}",
+        "--virtual-time-budget=5000",
+        f"--screenshot={out_path}",
+        file_uri,
+    ]
+    proc = subprocess.run(cmd, capture_output=True, text=True)
+    if proc.returncode != 0 or not out_path.exists():
+        print(f"[thumb] 캡처 실패 ({brief_path.name}): {proc.stderr[-400:]}", file=sys.stderr)
+        return None
+
+    size_kb = out_path.stat().st_size // 1024
+    print(f"[thumb] 캡처 생성 완료: {out_path.relative_to(repo_root)} ({size_kb}KB)")
+    return out_path
 
 
 def _strip_tags(raw: str) -> str:
@@ -125,6 +195,54 @@ def resolve_brief_url(
         time.sleep(sleep_sec)
 
 
+RAW_GH_BASE = "https://raw.githubusercontent.com/yangkoon/brief/main"
+
+
+def resolve_thumb_url(
+    filepath: Path,
+    repo_root: Path,
+    wait_for_live: bool = False,
+    dry_run: bool = False,
+    timeout_sec: int = 45,
+) -> str:
+    """각 호 화면 이미지 공개 URL이 유효한지 확인하고 반환합니다."""
+    fname = thumb_filename(filepath)
+    gh_pages_img = f"{GH_PAGES_BASE}/{THUMBS_DIR_NAME}/{fname}"
+    raw_gh_img = f"{RAW_GH_BASE}/{THUMBS_DIR_NAME}/{fname}"
+    local_thumb = repo_root / THUMBS_DIR_NAME / fname
+
+    if dry_run:
+        return gh_pages_img if local_thumb.exists() else ""
+
+    if not wait_for_live:
+        if _url_is_live(gh_pages_img):
+            return gh_pages_img
+        if _url_is_live(raw_gh_img):
+            return raw_gh_img
+        return ""
+
+    deadline = time.monotonic() + timeout_sec
+    attempt = 0
+    while True:
+        attempt += 1
+        if _url_is_live(gh_pages_img):
+            print(f"[thumb] GitHub Pages 이미지 확인 완료: {gh_pages_img}")
+            return gh_pages_img
+        if attempt >= 3 and _url_is_live(raw_gh_img):
+            print(f"[thumb] GitHub Raw 이미지 확인 완료: {raw_gh_img}")
+            return raw_gh_img
+
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            if _url_is_live(raw_gh_img):
+                return raw_gh_img
+            print(f"[thumb] 이미지 배포 대기 시간({timeout_sec}s) 초과 — 이미지 없이 발송합니다.")
+            return ""
+        sleep_sec = min(8, max(3, int(remaining)))
+        print(f"[thumb] 이미지 배포 대기 중... ({attempt}회차, {sleep_sec}s 후 재시도)")
+        time.sleep(sleep_sec)
+
+
 def _url_is_live(url: str) -> bool:
     req = urllib.request.Request(
         url,
@@ -142,7 +260,9 @@ def parse_brief_html(
     filepath: Path,
     base_url: str | None = None,
     wait_for_live: bool = False,
+    dry_run: bool = False,
 ) -> BriefMeta:
+    repo_root = Path(__file__).resolve().parents[2]
     content = filepath.read_text(encoding="utf-8")
 
     title_m = re.search(r"<title>(.*?)</title>", content, re.S | re.I)
@@ -161,7 +281,6 @@ def parse_brief_html(
     cover_label = ""
     if kicker_m:
         raw_kicker = _strip_tags(kicker_m.group(1))
-        # "이번 주를 상징하는 숫자 · 빅테크 4사 2026년 AI 설비투자" -> 뒷부분 핵심 라벨 추출
         parts = [p.strip() for p in raw_kicker.split("·") if p.strip()]
         cover_label = parts[-1] if parts else raw_kicker
 
@@ -184,6 +303,12 @@ def parse_brief_html(
     page_url = resolve_brief_url(
         filepath, base_url=base_url, wait_for_live=wait_for_live
     )
+    image_url = resolve_thumb_url(
+        filepath,
+        repo_root=repo_root,
+        wait_for_live=wait_for_live,
+        dry_run=dry_run,
+    )
 
     return BriefMeta(
         filepath=filepath,
@@ -193,6 +318,7 @@ def parse_brief_html(
         cover_value=cover_value,
         lead_title=lead_title,
         page_url=page_url,
+        image_url=image_url,
     )
 
 
@@ -240,19 +366,25 @@ def build_kakao_template(
 
     description = " · ".join(desc_parts)
 
+    content_obj: dict = {
+        "title": meta.lead_title,
+        "description": description,
+        "link": {
+            "web_url": meta.page_url,
+            "mobile_web_url": meta.page_url,
+        },
+    }
+    if meta.image_url:
+        content_obj["image_url"] = meta.image_url
+        content_obj["image_width"] = KAKAO_FEED_IMG_W
+        content_obj["image_height"] = KAKAO_FEED_IMG_H
+
     return {
         "object_type": "feed",
         "item_content": {
             "profile_text": profile_header,
         },
-        "content": {
-            "title": meta.lead_title,
-            "description": description,
-            "link": {
-                "web_url": meta.page_url,
-                "mobile_web_url": meta.page_url,
-            },
-        },
+        "content": content_obj,
         "buttons": [
             {
                 "title": "전문 읽기",
@@ -402,6 +534,16 @@ def main() -> int:
         help="GitHub Pages / 웹 배포가 HTTP 200으로 열릴 때까지 대기 후 발송",
     )
     parser.add_argument(
+        "--generate-thumbs",
+        action="store_true",
+        help="지정된 브리프 HTML의 화면 캡처 이미지(thumbs/*.png)만 생성 후 종료",
+    )
+    parser.add_argument(
+        "--force-thumbs",
+        action="store_true",
+        help="기존 썸네일이 있어도 강제로 다시 캡처",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="카카오 API를 호출하지 않고 파싱 결과 및 메시지 전문만 출력",
@@ -480,10 +622,18 @@ def main() -> int:
             print("발송할 브리프 HTML 파일이 없습니다.")
             return 0
 
+    # 2-1. 화면 캡처 생성 전용 모드
+    if args.generate_thumbs:
+        for path in target_paths:
+            generate_thumbnail(path, repo_root=repo_root, force=args.force_thumbs)
+        return 0
+
     # 3. Dry-run 미리보기 모드
     if args.dry_run:
         for path in target_paths:
-            meta = parse_brief_html(path, base_url=args.base_url, wait_for_live=False)
+            meta = parse_brief_html(
+                path, base_url=args.base_url, wait_for_live=False, dry_run=True
+            )
             tpl = build_kakao_template(meta)
             print("=" * 64)
             print(f"파일명 : {path.name}")
@@ -493,9 +643,10 @@ def main() -> int:
             if tpl["object_type"] == "feed":
                 header = tpl.get("item_content", {}).get("profile_text", "")
                 if header:
-                    print(f"[헤더] {header}")
-                print(f"[제목] {tpl['content'].get('title', '')}")
-                print(f"[설명] {tpl['content'].get('description', '')}")
+                    print(f"[헤더]   {header}")
+                print(f"[이미지] {tpl['content'].get('image_url', '(없음)')}")
+                print(f"[제목]   {tpl['content'].get('title', '')}")
+                print(f"[설명]   {tpl['content'].get('description', '')}")
             else:
                 print(tpl.get("text", ""))
             print("-" * 64)
