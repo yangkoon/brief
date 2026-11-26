@@ -60,6 +60,7 @@ class BriefMeta:
     cover_label: str
     cover_value: str
     lead_title: str
+    sub_topics: str
     page_url: str
     image_url: str = ""
     hub_url: str = HUB_URL
@@ -289,16 +290,25 @@ def parse_brief_html(
     )
     cover_value = _strip_tags(cover_m.group(1)) if cover_m else ""
 
+    desc_m = re.search(
+        r'<meta\s+name="description"\s+content="(.*?)"', content, re.S | re.I
+    )
+    meta_desc = _strip_tags(desc_m.group(1)) if desc_m else ""
+
     lead_m = re.search(
         r'class="lead-title"[^>]*>(.*?)</h[1-6]>', content, re.S | re.I
     )
-    if lead_m:
-        lead_title = _strip_tags(lead_m.group(1))
-    else:
-        desc_m = re.search(
-            r'<meta\s+name="description"\s+content="(.*?)"', content, re.S | re.I
+    lead_title = _strip_tags(lead_m.group(1)) if lead_m else (meta_desc or title_text)
+
+    sec_heads = [
+        _strip_tags(m)
+        for m in re.findall(
+            r'class="(?:art-title|desk-title)"[^>]*>(.*?)</h[1-6]>',
+            content,
+            re.S | re.I,
         )
-        lead_title = _strip_tags(desc_m.group(1)) if desc_m else title_text
+    ]
+    sub_topics = _extract_sub_topics(meta_desc, lead_title, sec_heads)
 
     page_url = resolve_brief_url(
         filepath, base_url=base_url, wait_for_live=wait_for_live
@@ -317,9 +327,33 @@ def parse_brief_html(
         cover_label=cover_label,
         cover_value=cover_value,
         lead_title=lead_title,
+        sub_topics=sub_topics,
         page_url=page_url,
         image_url=image_url,
     )
+
+
+def _extract_sub_topics(meta_desc: str, lead_title: str, sec_heads: list[str]) -> str:
+    """meta description 또는 각 면 제목에서 1면 톱과 겹치지 않는 핵심 토픽 요약을 추출합니다."""
+    body = re.sub(
+        r"^.*?(?:뉴스레터|Brief\s*(?:제?\d+호|시험\d*판)(?:\([^)]*\))?)\.\s*",
+        "",
+        meta_desc,
+    ).strip()
+    clauses = [c.strip().rstrip(".") for c in re.split(r",\s+", body) if c.strip()]
+    lead_words = set(re.findall(r"[가-힣A-Za-z0-9]{2,}", lead_title))
+    filtered: list[str] = []
+    for c in clauses:
+        c_words = set(re.findall(r"[가-힣A-Za-z0-9]{2,}", c))
+        overlap = len(c_words & lead_words) / max(1, len(c_words))
+        if overlap < 0.40 and not c.endswith("동향"):
+            filtered.append(c)
+
+    if len(filtered) >= 2:
+        return " · ".join(filtered)
+    if sec_heads:
+        return " · ".join(sec_heads[:4])
+    return " · ".join(clauses) if clauses else body
 
 
 def _truncate(text: str, max_len: int) -> str:
@@ -333,17 +367,32 @@ def _truncate(text: str, max_len: int) -> str:
 def build_kakao_template(
     meta: BriefMeta, token_notice: str | None = None
 ) -> dict:
-    """이모지 없는 담백한 카카오톡 피드 카드형(object_type="feed") 템플릿을 생성합니다."""
-    # 첫 줄 볼드 제목: 예) "AEC Brief · 제2호 · 2026.11.26(목)"
-    # (참고: item_content.profile_text는 카카오에서 16자로 잘리므로 content.title을 첫 줄로 사용)
-    if meta.edition_date:
-        card_title = f"{meta.brand} · {meta.edition_date}"
-    else:
-        card_title = meta.brand
+    """머리글 + 굵은 제목(2줄) + 면별 핵심 요약(2줄)을 꽉 채운 피드 카드 템플릿을 생성합니다."""
+    edition_part = meta.edition_date.split("·")[0].strip() if meta.edition_date else ""
+    date_part = (
+        meta.edition_date.split("·", 1)[1].strip()
+        if "·" in meta.edition_date
+        else ""
+    )
 
-    description = meta.lead_title
+    # 상단 머리글 (최대 16자): 예) "AEC Brief · 제2호"
+    if edition_part:
+        candidate = f"{meta.brand} · {edition_part}"
+        profile_header = (
+            candidate
+            if len(candidate) <= 16
+            else _truncate(f"{meta.brand} {edition_part}", 16)
+        )
+    else:
+        profile_header = _truncate(meta.brand, 16)
+
+    # 굵은 제목(최대 2줄): [발행일] + 1면 톱 헤드라인
+    card_title = f"[{date_part}] {meta.lead_title}" if date_part else meta.lead_title
+
+    # 아래 설명(최대 2줄): 2~6면 주요 키워드 요약
+    description = meta.sub_topics
     if token_notice:
-        description = f"{description} ({token_notice})"
+        description = f"[{token_notice}] {description}"
 
     content_obj: dict = {
         "title": card_title,
@@ -360,6 +409,9 @@ def build_kakao_template(
 
     return {
         "object_type": "feed",
+        "item_content": {
+            "profile_text": profile_header,
+        },
         "content": content_obj,
         "buttons": [
             {
