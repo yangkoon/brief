@@ -334,40 +334,19 @@ def build_kakao_template(
     meta: BriefMeta, token_notice: str | None = None
 ) -> dict:
     """이모지 없는 담백한 카카오톡 피드 카드형(object_type="feed") 템플릿을 생성합니다."""
-    edition_part = meta.edition_date.split("·")[0].strip() if meta.edition_date else ""
-    date_part = (
-        meta.edition_date.split("·", 1)[1].strip()
-        if "·" in meta.edition_date
-        else ""
-    )
-
-    # 상단 볼드 제호 헤더 (카카오 profile_text 최대 16자)
-    if edition_part:
-        candidate = f"{meta.brand} · {edition_part}"
-        profile_header = (
-            candidate
-            if len(candidate) <= 16
-            else _truncate(f"{meta.brand} {edition_part}", 16)
-        )
+    # 첫 줄 볼드 제목: 예) "AEC Brief · 제2호 · 2026.11.26(목)"
+    # (참고: item_content.profile_text는 카카오에서 16자로 잘리므로 content.title을 첫 줄로 사용)
+    if meta.edition_date:
+        card_title = f"{meta.brand} · {meta.edition_date}"
     else:
-        profile_header = _truncate(meta.brand, 16)
+        card_title = meta.brand
 
-    # 하단 보조 설명 (발행일 · 표지 지표)
-    desc_parts: list[str] = []
-    if date_part:
-        desc_parts.append(date_part)
-    if meta.cover_value:
-        if meta.cover_label:
-            desc_parts.append(f"{meta.cover_label} {meta.cover_value}")
-        else:
-            desc_parts.append(meta.cover_value)
+    description = meta.lead_title
     if token_notice:
-        desc_parts.append(token_notice)
-
-    description = " · ".join(desc_parts)
+        description = f"{description} ({token_notice})"
 
     content_obj: dict = {
-        "title": meta.lead_title,
+        "title": card_title,
         "description": description,
         "link": {
             "web_url": meta.page_url,
@@ -381,9 +360,6 @@ def build_kakao_template(
 
     return {
         "object_type": "feed",
-        "item_content": {
-            "profile_text": profile_header,
-        },
         "content": content_obj,
         "buttons": [
             {
