@@ -14,6 +14,11 @@ on:
         required: false
         default: 'latest-aec'
         type: string
+      edit_message_id:
+        description: '기존 채널 메시지 수정 시 message_id 입력 (비워두면 새 메시지 발송)'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
@@ -85,5 +90,10 @@ jobs:
           AI_TELEGRAM_BOT_TOKEN: ${{ secrets.AI_TELEGRAM_BOT_TOKEN }}
           AI_TELEGRAM_CHAT_ID: ${{ secrets.AI_TELEGRAM_CHAT_ID }}
           INPUT_FILE: ${{ inputs.target_file }}
+          EDIT_MSG_ID: ${{ inputs.edit_message_id }}
         run: |
-          python3 .github/scripts/send_telegram_brief.py --wait-for-live "${INPUT_FILE:-latest-aec}"
+          EDIT_FLAG=()
+          if [ -n "$EDIT_MSG_ID" ]; then
+            EDIT_FLAG=(--edit-message-id "$EDIT_MSG_ID")
+          fi
+          python3 .github/scripts/send_telegram_brief.py --wait-for-live "${EDIT_FLAG[@]}" "${INPUT_FILE:-latest-aec}"

@@ -276,14 +276,19 @@ def parse_brief_html(
     three_lines: list[str] = []
     tl_m = re.search(r'<ol[^>]*id="threeLines"[^>]*>(.*?)</ol>', content, re.S | re.I)
     if tl_m:
-        for li_raw in re.findall(r"<li[^>]*>(.*?)</li>", tl_m.group(1), re.S | re.I):
-            without_idx = re.sub(
-                r'<span[^>]*class="[^"]*\bidx\b[^"]*"[^>]*>.*?</span>',
-                "",
-                li_raw,
-                flags=re.S | re.I,
-            )
-            cleaned_li = _strip_tags(without_idx)
+        for li_m in re.finditer(r"<li([^>]*)>(.*?)</li>", tl_m.group(1), re.S | re.I):
+            li_attrs, li_raw = li_m.groups()
+            tg_override = re.search(r'data-tg="([^"]+)"', li_attrs)
+            if tg_override:
+                cleaned_li = html.unescape(tg_override.group(1)).strip()
+            else:
+                without_idx = re.sub(
+                    r'<span[^>]*class="[^"]*\bidx\b[^"]*"[^>]*>.*?</span>',
+                    "",
+                    li_raw,
+                    flags=re.S | re.I,
+                )
+                cleaned_li = condense_summary_line(_strip_tags(without_idx))
             if cleaned_li:
                 three_lines.append(cleaned_li)
 
@@ -317,6 +322,55 @@ def parse_brief_html(
     )
 
 
+def condense_summary_line(raw: str, max_chars: int = 68) -> str:
+    """장문 복문이나 잡다한 나열형 문장이 들어오더라도 단일 주제의 간결한 한 줄로 정제합니다."""
+    s = raw.strip()
+    if not s:
+        return ""
+
+    # 이미 간결하고 나열이 적은 문장은 원문 그대로 유지
+    if len(s) <= max_chars and s.count("·") <= 2:
+        return s
+
+    # 1) 7자 이상의 부연 설명 괄호 제거
+    s = re.sub(r"\([^)]{7,}\)", "", s)
+
+    # 2) 'A과/와 함께 B·C·D가 이어졌습니다/잇따랐습니다' 형태의 무관한 나열 꼬리 제거
+    m_grabbag = re.match(
+        r"^(.+?)(?:과|와)\s+함께\s+.+(?:이어졌|잇따랐|진행됐).*$", s
+    )
+    if m_grabbag:
+        head = m_grabbag.group(1).strip(" ,·")
+        parts = [p.strip() for p in head.split("·") if p.strip()]
+        s = (f"{parts[0]}·{parts[1]}" if len(parts) >= 2 else head) + " 성과가 주목받았습니다."
+
+    # 3) 여전히 길면 복문 접속구 기준으로 핵심 주절만 남김
+    if len(s) > max_chars:
+        m_clause = re.match(
+            r"^(.+?)(?:한 가운데,|이 겹친 가운데,|가 겹친 가운데,|커지는 사이,\s*(?:국내에서는\s*)?|겹치며,)\s*(.+)$",
+            s,
+        )
+        if m_clause:
+            c1, c2 = m_clause.group(1).strip(), m_clause.group(2).strip()
+            s = c2 if len(c2) <= max_chars + 10 else c1
+
+    if len(s) > max_chars:
+        m_and = re.match(
+            r"^(.+?(?:출범했|진단했|발표했|세웠|열었|돌파했|낮췄|완화했|나섰))(?:고|으며),\s+.+$",
+            s,
+        )
+        if m_and:
+            s = m_and.group(1) + "습니다."
+
+    # 4) 가운뎃점(·) 3개 이상 과다 나열 시 앞 2개 항목으로 제한
+    if s.count("·") >= 3:
+        parts = [p.strip() for p in s.split("·") if p.strip()]
+        tail_verb = parts[-1].split(" ", 1)[1] if " " in parts[-1] else ""
+        s = f"{parts[0]}·{parts[1]}" + (f" 등 {tail_verb}" if tail_verb else "")
+
+    return re.sub(r"\s+", " ", s).strip()
+
+
 def build_telegram_message(meta: BriefMeta, max_visible_len: int = TELEGRAM_CAPTION_MAX) -> tuple[str, dict]:
     """이모지 없는 담백한 뉴스레터 요약 메시지(HTML)와 인라인 버튼 마크업을 생성합니다."""
     edition_part = meta.edition_date.split("·")[0].strip() if meta.edition_date else ""
@@ -341,13 +395,13 @@ def build_telegram_message(meta: BriefMeta, max_visible_len: int = TELEGRAM_CAPT
         if meta.cover_value:
             if meta.cover_label:
                 blocks.append(
-                    f"이번 주 숫자 · {_escape_tg_html(meta.cover_label)}: <b>{_escape_tg_html(meta.cover_value)}</b>"
+                    f"이번 호 숫자 · {_escape_tg_html(meta.cover_label)}: <b>{_escape_tg_html(meta.cover_value)}</b>"
                 )
             else:
-                blocks.append(f"이번 주 숫자: <b>{_escape_tg_html(meta.cover_value)}</b>")
+                blocks.append(f"이번 호 숫자: <b>{_escape_tg_html(meta.cover_value)}</b>")
 
         if meta.three_lines and (line_limit is None or line_limit > 0):
-            summary_rows = ["<b>이번 주 3줄 요약</b>"]
+            summary_rows = ["<b>핵심 3줄 요약</b>"]
             for idx, item in enumerate(meta.three_lines[:3], start=1):
                 clipped = _truncate(item, line_limit) if line_limit else item
                 summary_rows.append(f"{idx}. {_escape_tg_html(clipped)}")
@@ -359,7 +413,7 @@ def build_telegram_message(meta: BriefMeta, max_visible_len: int = TELEGRAM_CAPT
     plain_check = html.unescape(re.sub(r"<[^>]+>", "", html_text))
 
     if _utf16_len(plain_check) > max_visible_len:
-        for limit in (140, 110, 85, 60, 0):
+        for limit in (90, 70, 55, 0):
             html_text = _assemble(limit)
             plain_check = html.unescape(re.sub(r"<[^>]+>", "", html_text))
             if _utf16_len(plain_check) <= max_visible_len:
@@ -639,9 +693,39 @@ def validate_target_not_self_bot(target: ChannelTarget) -> str:
     return bot_username
 
 
-def send_brief_to_telegram(meta: BriefMeta, target: ChannelTarget) -> dict:
+def send_brief_to_telegram(
+    meta: BriefMeta,
+    target: ChannelTarget,
+    edit_message_id: int | None = None,
+) -> dict:
     max_len = TELEGRAM_CAPTION_MAX if meta.thumb_path else TELEGRAM_MESSAGE_MAX
     html_text, reply_markup = build_telegram_message(meta, max_visible_len=max_len)
+
+    if edit_message_id is not None:
+        if meta.thumb_path and meta.thumb_path.exists():
+            return _tg_post_json(
+                target.bot_token,
+                "editMessageCaption",
+                {
+                    "chat_id": target.chat_id,
+                    "message_id": edit_message_id,
+                    "caption": html_text,
+                    "parse_mode": "HTML",
+                    "reply_markup": reply_markup,
+                },
+            )
+        return _tg_post_json(
+            target.bot_token,
+            "editMessageText",
+            {
+                "chat_id": target.chat_id,
+                "message_id": edit_message_id,
+                "text": html_text,
+                "parse_mode": "HTML",
+                "reply_markup": reply_markup,
+                "disable_web_page_preview": False,
+            },
+        )
 
     if meta.thumb_path and meta.thumb_path.exists():
         fields: dict[str, str] = {
@@ -794,6 +878,12 @@ def main() -> int:
         help="봇이 참여 중인 채널/채팅방의 Chat ID 목록을 조회 후 종료",
     )
     parser.add_argument(
+        "--edit-message-id",
+        type=int,
+        default=None,
+        help="새 메시지 발송 대신 기존 채널 메시지(message_id)의 본문만 제자리에서 수정",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="텔레그램 API를 호출하지 않고 파싱 결과 및 발송 예정 전문만 출력",
@@ -896,7 +986,9 @@ def main() -> int:
                 no_photo=args.no_photo,
                 force_thumbs=args.force_thumbs,
             )
-            resp = send_brief_to_telegram(meta, target)
+            resp = send_brief_to_telegram(
+                meta, target, edit_message_id=args.edit_message_id
+            )
         except RuntimeError as exc:
             err_msg = str(exc)
             print(f"❌ {err_msg}", file=sys.stderr)
@@ -913,9 +1005,10 @@ def main() -> int:
             print(f"텔레그램 응답 오류 ({path.name}): {resp}", file=sys.stderr)
             return 1
 
-        msg_id = resp.get("result", {}).get("message_id", "")
+        msg_id = resp.get("result", {}).get("message_id", args.edit_message_id or "")
+        action_lbl = "메시지 수정 완료" if args.edit_message_id else "발송 완료"
         print(
-            f"✅ 텔레그램 발송 완료: {path.name} -> {target.chat_id} (봇: @{bot_uname}, message_id={msg_id})"
+            f"✅ 텔레그램 {action_lbl}: {path.name} -> {target.chat_id} (봇: @{bot_uname}, message_id={msg_id})"
         )
         sent_count += 1
 
