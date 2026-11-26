@@ -1,0 +1,89 @@
+name: Telegram Brief Notify
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '*_Brief_*.html'
+
+  workflow_dispatch:
+    inputs:
+      target_file:
+        description: '발송할 브리프 (예: latest-aec, AEC_Brief_02.html, latest-ai, latest)'
+        required: false
+        default: 'latest-aec'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  notify-telegram:
+    name: Send Brief to Telegram Channel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect newly published brief files
+        id: detect
+        if: github.event_name == 'push'
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            BASE_REF="HEAD~1"
+          else
+            BASE_REF="$BEFORE_SHA"
+          fi
+
+          # 기본은 신규 추가(--diff-filter=A)된 브리프만 발송.
+          # 단, 커밋 메시지에 [발송] 또는 [telegram]이 포함되면 수정본(AM)도 재발송 및 1면 재캡처.
+          if echo "$COMMIT_MSG" | grep -Eq '\[(발송|telegram|TELEGRAM)\]'; then
+            FILTER="AM"
+            echo "force_thumbs=true" >> "$GITHUB_OUTPUT"
+          else
+            FILTER="A"
+            echo "force_thumbs=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          FILES=$(git diff --name-only --diff-filter="$FILTER" "$BASE_REF" "$AFTER_SHA" -- '*_Brief_*.html' | tr '\n' ' ' | xargs)
+          echo "Detected files ($FILTER): ${FILES:-<none>}"
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      - name: Send Telegram channel post (Push)
+        if: github.event_name == 'push' && steps.detect.outputs.files != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          AEC_TELEGRAM_BOT_TOKEN: ${{ secrets.AEC_TELEGRAM_BOT_TOKEN }}
+          AEC_TELEGRAM_CHAT_ID: ${{ secrets.AEC_TELEGRAM_CHAT_ID }}
+          AI_TELEGRAM_BOT_TOKEN: ${{ secrets.AI_TELEGRAM_BOT_TOKEN }}
+          AI_TELEGRAM_CHAT_ID: ${{ secrets.AI_TELEGRAM_CHAT_ID }}
+          TARGET_FILES: ${{ steps.detect.outputs.files }}
+          FORCE_THUMBS: ${{ steps.detect.outputs.force_thumbs }}
+        run: |
+          EXTRA_FLAG=""
+          if [ "$FORCE_THUMBS" = "true" ]; then
+            EXTRA_FLAG="--force-thumbs"
+          fi
+          # shellcheck disable=SC2086
+          python3 .github/scripts/send_telegram_brief.py --wait-for-live $EXTRA_FLAG $TARGET_FILES
+
+      - name: Send Telegram channel post (Manual Test / Dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          AEC_TELEGRAM_BOT_TOKEN: ${{ secrets.AEC_TELEGRAM_BOT_TOKEN }}
+          AEC_TELEGRAM_CHAT_ID: ${{ secrets.AEC_TELEGRAM_CHAT_ID }}
+          AI_TELEGRAM_BOT_TOKEN: ${{ secrets.AI_TELEGRAM_BOT_TOKEN }}
+          AI_TELEGRAM_CHAT_ID: ${{ secrets.AI_TELEGRAM_CHAT_ID }}
+          INPUT_FILE: ${{ inputs.target_file }}
+        run: |
+          python3 .github/scripts/send_telegram_brief.py --wait-for-live "${INPUT_FILE:-latest-aec}"
