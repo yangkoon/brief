@@ -15,6 +15,11 @@ on:
         required: false
         default: ''
         type: string
+      skip_sns:
+        description: 'Make.com(페이스북/링크드인) SNS 자동 배포 건너뛰기'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -43,3 +48,21 @@ jobs:
             EDIT_FLAG=(--edit-message-id "$EDIT_MSG_ID")
           fi
           python3 .github/scripts/send_telegram_brief.py --wait-for-live "${EDIT_FLAG[@]}" "${INPUT_FILE:-latest-aec}"
+
+  notify-make-sns:
+    name: Trigger Make.com (Facebook & LinkedIn)
+    needs: notify-telegram
+    if: success() && inputs.edit_message_id == '' && !inputs.skip_sns
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Send brief payload to Make.com Webhook
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          MAKE_AEC_WEBHOOK_URL: ${{ secrets.MAKE_AEC_WEBHOOK_URL }}
+          MAKE_AI_WEBHOOK_URL: ${{ secrets.MAKE_AI_WEBHOOK_URL }}
+          INPUT_FILE: ${{ inputs.target_file }}
+        run: |
+          python3 .github/scripts/send_make_webhook.py --wait-for-live "${INPUT_FILE:-latest-aec}"

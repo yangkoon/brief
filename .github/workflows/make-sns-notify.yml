@@ -1,0 +1,42 @@
+name: Make.com SNS Notify (Facebook & LinkedIn)
+
+on:
+  # 텔레그램 발송 없이 Make.com(페이스북/링크드인)만 단독 테스트하거나 수동 재발송할 때 사용합니다.
+  # 일반 운영 시에는 Telegram Brief Notify 워크플로 완료 후 자동으로 함께 실행됩니다.
+  workflow_dispatch:
+    inputs:
+      target_file:
+        description: '발송할 브리프 (예: AEC_Brief_03.html, AI+_Brief_03.html, latest-aec, latest-ai, latest)'
+        required: false
+        default: 'latest-aec'
+        type: string
+      dry_run:
+        description: '실제 Make.com 호출 없이 JSON 페이로드만 로그로 확인'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  notify-make-sns:
+    name: Send Brief Payload to Make.com
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Send brief payload to Make.com Webhook
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          MAKE_AEC_WEBHOOK_URL: ${{ secrets.MAKE_AEC_WEBHOOK_URL }}
+          MAKE_AI_WEBHOOK_URL: ${{ secrets.MAKE_AI_WEBHOOK_URL }}
+          INPUT_FILE: ${{ inputs.target_file }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python3 .github/scripts/send_make_webhook.py --dry-run "${INPUT_FILE:-latest-aec}"
+          else
+            python3 .github/scripts/send_make_webhook.py --wait-for-live "${INPUT_FILE:-latest-aec}"
+          fi
