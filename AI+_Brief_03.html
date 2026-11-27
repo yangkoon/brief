@@ -1,0 +1,2093 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI+ Brief 제3호 · 엔비디아 동남아 4개국 선적 중단·델 1,323억$ 백로그·EU 500억€ 퀀텀법·FCC 궤도 데이터센터 승인 | brief.yangkoon.com</title>
+<meta name="description" content="AI+ Brief 제3호 주간 AI·ICT 뉴스레터. 엔비디아 동남아 4개국 AI 서버 선적 중단과 델 1,323억 달러 백로그, EU 500억 유로 주권 기술 펀드·퀀텀 법, 미 FCC 스페이스X 100만 기 궤도 AI 데이터센터 승인 및 800 VDC·해상 부유식 인프라, 크라우드스트라이크 439억 달러 지스케일러 인수, ETRI 자율 연구 AI 유라(YouRA)·Anthropic Messages API Rust 전환 특집.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root {
+  --paper: #e5e5ea;
+  --sheet: #f5f5f7;
+  --card: #ffffff;
+  --paper-deep: #e2e2e7;
+  --ink: #1d1d1f;
+  --ink-soft: #424245;
+  --mute: #6e6e73;
+  --rule: #1d1d1f;
+  --hair: #d1d1d6;
+  --accent: #1d4ed8;
+  --accent-soft: rgba(29, 78, 216, 0.10);
+  --desk: #23426b;
+  --desk-deep: #18304f;
+  --desk-ink: #f4f7fb;
+  --desk-mute: #b8c9df;
+  --desk-hair: rgba(255, 255, 255, 0.18);
+  --cover-bg: #171614;
+  --cover-ink: #f5f1e8;
+  --cover-mute: #b7afa0;
+  --cover-bar: #3b82f6;
+  --badge-ok-bg: #e2efe5;
+  --badge-ok-fg: #1d5c33;
+  --badge-prog-bg: #e3ebf6;
+  --badge-prog-fg: #1e4577;
+  --badge-issue-bg: #f8e4e4;
+  --badge-issue-fg: #9a2428;
+  --badge-plan-bg: #f3ecd9;
+  --badge-plan-fg: #725413;
+  --shadow: 0 1px 0 rgba(28, 27, 24, 0.06);
+  --serif: 'Newsreader', 'Pretendard Variable', Georgia, serif;
+  --head: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+  --sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141311;
+    --sheet: #1b1a17;
+    --card: #22211d;
+    --paper-deep: #24221e;
+    --ink: #ede8dd;
+    --ink-soft: #c9c2b4;
+    --mute: #9a9284;
+    --rule: #dcd4c5;
+    --hair: #38342d;
+    --accent: #60a5fa;
+    --accent-soft: rgba(96, 165, 250, 0.16);
+    --desk: #193152;
+    --desk-deep: #11233b;
+    --desk-ink: #f1f5fb;
+    --desk-mute: #adc2dc;
+    --desk-hair: rgba(255, 255, 255, 0.16);
+    --cover-bg: #0c0b0a;
+    --cover-ink: #f4f0e6;
+    --cover-mute: #a9a192;
+    --cover-bar: #60a5fa;
+    --badge-ok-bg: #1b3624;
+    --badge-ok-fg: #8dd6a4;
+    --badge-prog-bg: #1b2d45;
+    --badge-prog-fg: #96bef2;
+    --badge-issue-bg: #3e1e1f;
+    --badge-issue-fg: #f39b99;
+    --badge-plan-bg: #3a3019;
+    --badge-plan-fg: #e7c97e;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #141311;
+  --sheet: #1b1a17;
+  --card: #22211d;
+  --paper-deep: #24221e;
+  --ink: #ede8dd;
+  --ink-soft: #c9c2b4;
+  --mute: #9a9284;
+  --rule: #dcd4c5;
+  --hair: #38342d;
+  --accent: #60a5fa;
+  --accent-soft: rgba(96, 165, 250, 0.16);
+  --desk: #193152;
+  --desk-deep: #11233b;
+  --desk-ink: #f1f5fb;
+  --desk-mute: #adc2dc;
+  --desk-hair: rgba(255, 255, 255, 0.16);
+  --cover-bg: #0c0b0a;
+  --cover-ink: #f4f0e6;
+  --cover-mute: #a9a192;
+  --cover-bar: #60a5fa;
+  --badge-ok-bg: #1b3624;
+  --badge-ok-fg: #8dd6a4;
+  --badge-prog-bg: #1b2d45;
+  --badge-prog-fg: #96bef2;
+  --badge-issue-bg: #3e1e1f;
+  --badge-issue-fg: #f39b99;
+  --badge-plan-bg: #3a3019;
+  --badge-plan-fg: #e7c97e;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.74;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--hair);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+button { font-family: var(--sans); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+.ui { font-family: var(--sans); }
+
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* 1. Sticky Top Bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hair);
+  box-shadow: var(--shadow);
+}
+.topbar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+.topbar-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  text-decoration: none;
+  margin-right: 4px;
+}
+.topbar-brand strong {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+.topbar-brand span {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.topbar-controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.zoom-ctrl {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  overflow: hidden;
+  background: transparent;
+}
+.zoom-btn, .zoom-val {
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 8px;
+  line-height: 1;
+}
+.zoom-btn { font-size: 14px; padding: 0 9px; }
+.zoom-val {
+  min-width: 44px;
+  border-left: 1px solid var(--hair);
+  border-right: 1px solid var(--hair);
+  color: var(--ink-soft);
+}
+.zoom-btn:hover:not(:disabled), .zoom-val:hover { background: var(--paper-deep); color: var(--ink); }
+.zoom-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  user-select: none;
+  background: transparent;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  padding: 4px 11px 4px 6px;
+  white-space: nowrap;
+}
+.theme-switch:hover { border-color: var(--ink); }
+.switch-track {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--hair);
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--sheet);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+.theme-switch[aria-checked="true"] .switch-track { background: var(--accent); }
+.theme-switch[aria-checked="true"] .switch-thumb { transform: translateX(16px); }
+.jump-nav {
+  border-top: 1px solid var(--hair);
+  background: var(--sheet);
+}
+.jump-nav .wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow-x: auto;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+.jump-nav .wrap::-webkit-scrollbar { display: none; }
+.jump-nav a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 2px 0;
+}
+.jump-nav a:hover { color: var(--accent); }
+.jump-nav a.desk-link { color: var(--desk); font-weight: 700; }
+.jump-nav a.site-link { margin-left: auto; font-weight: 700; color: var(--ink); }
+.jump-nav a.site-link:hover { color: var(--accent); }
+:root[data-theme="dark"] .jump-nav a.desk-link { color: #8cb4e8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .jump-nav a.desk-link { color: #8cb4e8; }
+}
+
+/* Main Broadsheet Container */
+.sheet {
+  background: var(--sheet);
+  border-left: 1px solid var(--hair);
+  border-right: 1px solid var(--hair);
+  margin: 0 auto;
+  max-width: 1160px;
+  padding: 0 36px 48px;
+}
+
+/* 2. Masthead */
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 28px 0 20px;
+}
+.mast-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 0;
+}
+.mast-kicker {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--mute);
+  margin-bottom: 6px;
+}
+.mast-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(36px, 4.6vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+.brand-accent { color: var(--accent); }
+.mast-desc {
+  margin: 10px auto 0;
+  max-width: 520px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.ed-promo {
+  --promo: #1d4ed8;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  max-width: 220px;
+  padding: 12px 15px 11px;
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-top: 3px solid var(--promo);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.ed-promo--aec { --promo: #a3262a; }
+.ed-promo--hub { --promo: #23426b; justify-self: start; }
+.ed-promo--hub .ed-promo-title { font-size: 17px; line-height: 26.4px; letter-spacing: -0.02em; }
+:root[data-theme="dark"] .ed-promo--ai { --promo: #60a5fa; }
+:root[data-theme="dark"] .ed-promo--aec { --promo: #e0615c; }
+:root[data-theme="dark"] .ed-promo--hub { --promo: #8cb4e8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ed-promo--ai { --promo: #60a5fa; }
+  :root:not([data-theme="light"]) .ed-promo--aec { --promo: #e0615c; }
+  :root:not([data-theme="light"]) .ed-promo--hub { --promo: #8cb4e8; }
+}
+.ed-promo:hover {
+  color: var(--ink);
+  border-color: var(--promo);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+.ed-promo-kicker { font-family: var(--sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: var(--mute); }
+.ed-promo-title { font-family: var(--serif); font-weight: 900; font-size: 24px; line-height: 1.1; letter-spacing: -0.03em; }
+.ed-promo-mark { color: var(--promo); }
+.ed-promo-desc { font-family: var(--sans); font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+
+/* 3. Edition Strip */
+.edition-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 3px double var(--rule);
+  border-bottom: 1.5px solid var(--rule);
+  padding: 8px 2px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.edition-bar strong { color: var(--ink); font-weight: 700; }
+
+/* 4. Cover Panel (Dark Typographic Hero, No Photos) */
+.cover-panel {
+  margin: 22px 0 26px;
+  background: var(--cover-bg);
+  color: var(--cover-ink);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  border: 1px solid var(--rule);
+}
+.cover-kicker {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--cover-bar);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.cover-big {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(44px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  margin: 0 0 12px;
+}
+.cover-big small {
+  font-size: 0.42em;
+  font-weight: 700;
+  margin-left: 4px;
+  color: var(--cover-mute);
+}
+.cover-lead {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--cover-mute);
+}
+.cover-lead b { color: var(--cover-ink); font-weight: 600; }
+.cover-chart {
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  padding-left: 28px;
+  font-family: var(--sans);
+}
+.cover-chart-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin: 0 0 14px;
+  color: var(--cover-ink);
+}
+.cbar-row { margin-bottom: 12px; }
+.cbar-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  margin-bottom: 5px;
+  color: var(--cover-mute);
+}
+.cbar-head b { color: var(--cover-ink); }
+.cbar-track {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.cbar-fill {
+  height: 100%;
+  background: var(--cover-bar);
+}
+.cbar-fill.alt { background: #d4a657; }
+.cbar-fill.sub { background: #7f8c9a; }
+.chart-note {
+  margin-top: 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--mute);
+}
+.cover-panel .chart-note { color: var(--cover-mute); opacity: 0.85; }
+
+/* Section Headers */
+.sec {
+  padding-top: 28px;
+  margin-top: 28px;
+  border-top: 2px solid var(--rule);
+}
+.sec-first {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--hair);
+}
+.sec-tag {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.sec-title {
+  margin: 0;
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: 23px;
+  letter-spacing: -0.025em;
+}
+.sec-meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--mute);
+}
+
+/* 5. Front Page Lead Story */
+.lead-kicker {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.lead-title {
+  margin: 0 0 12px;
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: clamp(26px, 3.1vw, 36px);
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+.lead-deck {
+  margin: 0 0 18px;
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--accent);
+  padding-left: 14px;
+}
+.lead-cols {
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid var(--hair);
+  font-size: 15px;
+  line-height: 1.82;
+}
+.lead-cols p { margin: 0 0 14px; }
+.dropcap::first-letter {
+  float: left;
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 0.9;
+  padding: 4px 10px 2px 0;
+  color: var(--accent);
+}
+.expand-box {
+  margin-top: 14px;
+  border-top: 1px dashed var(--hair);
+  padding-top: 14px;
+}
+.expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.expand-btn:hover { background: var(--ink); color: var(--paper); }
+.expand-btn.read-done::after {
+  content: ' · 읽음';
+  color: var(--accent);
+  font-weight: 700;
+}
+.expand-btn:hover.read-done::after { color: var(--paper); }
+.expand-body {
+  display: none;
+  margin-top: 16px;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--hair);
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+.expand-body.open { display: block; }
+.expand-body p { margin: 0 0 12px; }
+.expand-body p:last-child { margin-bottom: 0; }
+.source-line {
+  margin-top: 10px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--mute);
+}
+
+/* 6. 3-Line Summary & Numbers */
+.brief-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+}
+.box-card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  padding: 18px 20px;
+}
+.box-title {
+  margin: 0 0 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.three-lines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.three-lines li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--hair);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+.three-lines li:last-child { border-bottom: none; padding-bottom: 0; }
+.three-lines .idx {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--accent);
+  line-height: 1.3;
+}
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.num-card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-top: 2.5px solid var(--accent);
+  padding: 14px 16px;
+  font-family: var(--sans);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.num-val {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.num-lbl {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.num-sub {
+  font-size: 11.5px;
+  color: var(--mute);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* 7. Major Stories 2x2 */
+.major-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+.story-card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-top: 2.5px solid var(--rule);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.story-tag {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.story-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: 18.5px;
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+}
+.story-summary {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.story-more {
+  display: none;
+  margin: 10px 0 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--hair);
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.story-more.open { display: block; }
+.story-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--mute);
+}
+.small-toggle {
+  border: 1px solid var(--hair);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.small-toggle:hover { border-color: var(--ink); }
+.small-toggle.read-done { border-color: var(--accent); color: var(--accent); }
+
+/* 8. AX Banner */
+.ax-banner {
+  margin-top: 26px;
+  background: var(--desk);
+  color: var(--desk-ink);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  border: 1px solid var(--desk-deep);
+}
+.ax-banner-kicker {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--desk-mute);
+}
+.ax-banner-title {
+  margin: 3px 0 0;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+}
+.ax-banner a {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--desk-ink);
+  border: 1px solid var(--desk-ink);
+  padding: 8px 16px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ax-banner a:hover { background: var(--desk-ink); color: var(--desk-deep); }
+
+/* Two-Column Section Layout */
+.two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.analysis h3 {
+  margin: 0 0 10px;
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+}
+.analysis p {
+  margin: 0 0 12px;
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+
+/* Horizontal Bar Charts */
+.chart-box {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  padding: 16px 18px;
+  font-family: var(--sans);
+}
+.chart-box h4 {
+  margin: 0 0 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.bar-item { margin-bottom: 11px; }
+.bar-item:last-of-type { margin-bottom: 0; }
+.bar-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+  margin-bottom: 4px;
+}
+.bar-track {
+  height: 10px;
+  background: var(--paper-deep);
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: var(--accent);
+}
+.bar-fill.navy { background: var(--desk); }
+.bar-fill.ink { background: var(--ink-soft); }
+
+/* Tables */
+.tbl-wrap {
+  overflow-x: auto;
+  margin-top: 18px;
+}
+table.news-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+table.news-tbl th, table.news-tbl td {
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--hair);
+  text-align: left;
+  vertical-align: top;
+}
+table.news-tbl th {
+  border-top: 1.5px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--mute);
+  white-space: nowrap;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.b-ok { background: var(--badge-ok-bg); color: var(--badge-ok-fg); }
+.b-prog { background: var(--badge-prog-bg); color: var(--badge-prog-fg); }
+.b-issue { background: var(--badge-issue-bg); color: var(--badge-issue-fg); }
+.b-plan { background: var(--badge-plan-bg); color: var(--badge-plan-fg); }
+
+/* News Brief Lists & Timeline */
+.brief-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+.brief-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hair);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.brief-list li:last-child { border-bottom: none; }
+.brief-list b { font-weight: 700; }
+.src-tag {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--mute);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.timeline {
+  margin-top: 18px;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent);
+  font-family: var(--sans);
+}
+.tl-item {
+  position: relative;
+  padding: 0 0 12px 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.tl-date {
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+/* 13. AX Special Desk (Navy + Graph Paper) */
+.ax-desk {
+  margin-top: 32px;
+  background-color: var(--desk);
+  background-image:
+    linear-gradient(var(--desk-hair) 1px, transparent 1px),
+    linear-gradient(90deg, var(--desk-hair) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--desk-ink);
+  padding: 30px 28px;
+  border: 1px solid var(--desk-deep);
+}
+.ax-desk a { color: #d5e6ff; text-decoration-color: rgba(213, 230, 255, 0.45); }
+.ax-desk a:hover { color: #ffffff; }
+.ax-head {
+  border-bottom: 1px solid var(--desk-hair);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+.ax-kicker {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #9ec3f5;
+}
+.ax-head h2 {
+  margin: 6px 0 6px;
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 1.28;
+  letter-spacing: -0.025em;
+}
+.ax-head p {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--desk-mute);
+}
+.ax-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.ax-panel {
+  background: rgba(16, 33, 56, 0.72);
+  border: 1px solid var(--desk-hair);
+  padding: 18px 20px;
+}
+.ax-panel h3 {
+  margin: 0 0 10px;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 18.5px;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.ax-panel p {
+  margin: 0 0 11px;
+  font-size: 14px;
+  line-height: 1.78;
+  color: #e6eef8;
+}
+.ax-panel p:last-child { margin-bottom: 0; }
+.ax-check {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.ax-check li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--desk-hair);
+  line-height: 1.55;
+  color: #e6eef8;
+}
+.ax-check li:last-child { border-bottom: none; }
+.ax-check strong { color: #9ec3f5; }
+.ax-reports {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.ax-list {
+  margin: 18px 0 0;
+  padding: 16px 20px;
+  list-style: none;
+  background: rgba(16, 33, 56, 0.72);
+  border: 1px solid var(--desk-hair);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 22px;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.ax-list li {
+  padding-left: 12px;
+  border-left: 2px solid #9ec3f5;
+}
+
+/* 14. Opinion 6 Cards + Glossary */
+.op-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.op-card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.op-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 16.5px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.op-q { margin: 0 0 10px; font-size: 13.5px; line-height: 1.6; color: var(--ink); font-weight: 500; }
+.op-cmt { margin: 0 0 12px; padding: 8px 10px; background: var(--sheet); border-left: 2.5px solid var(--desk); font-size: 12.5px; line-height: 1.58; color: var(--ink-soft); }
+.op-cmt b { color: var(--desk); font-weight: 700; }
+:root[data-theme="dark"] .op-cmt b { color: #9ec3f5; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .op-cmt b { color: #9ec3f5; } }
+.op-by {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--mute);
+  border-top: 1px solid var(--hair);
+  padding-top: 8px;
+}
+.op-link { color: var(--accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
+.op-link:hover { text-decoration: underline; }
+.catalyst-box { margin-top: 16px; padding: 14px 16px; background: var(--card); border-left: 3.5px solid var(--desk); font-size: 13.5px; line-height: 1.68; color: var(--ink-soft); }
+.catalyst-box strong { color: var(--desk); font-weight: 700; margin-right: 6px; }
+:root[data-theme="dark"] .catalyst-box strong { color: #9ec3f5; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .catalyst-box strong { color: #9ec3f5; } }
+.colophon-legal { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair); font-size: 11.5px; line-height: 1.65; color: var(--mute); }
+.glossary-box {
+  margin-top: 18px;
+  background: var(--card);
+  border: 1.5px solid var(--rule);
+  padding: 16px 20px;
+}
+
+/* 15. Schedule & Cal Button */
+.cal-btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cal-btn:hover { background: var(--ink); color: var(--paper); }
+
+/* 16. Footer */
+.colophon {
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 3px double var(--rule);
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--mute);
+  line-height: 1.7;
+}
+.colophon strong { color: var(--ink); }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .sheet { padding: 0 20px 36px; border-left: none; border-right: none; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+  .ed-promo { justify-self: center; max-width: 340px; }
+  .cover-panel { grid-template-columns: 1fr; padding: 22px 20px; }
+  .cover-chart { border-left: none; border-top: 1px solid rgba(255,255,255,0.14); padding-left: 0; padding-top: 18px; }
+  .lead-cols { column-count: 1; }
+  .brief-grid, .major-grid, .two-col, .ax-grid, .ax-reports, .ax-list, .op-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 14px; }
+  .num-grid { grid-template-columns: 1fr; }
+  .topbar-controls { margin-left: 0; }
+}
+</style>
+<script>
+  window.goatcounter = {
+    path: function(p) { return p.replace(/\.html$/, ''); }
+  };
+</script>
+<script data-goatcounter="https://yangkoon.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<!-- 1. 상단 고정 바 -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="topbar-row">
+      <a class="topbar-brand" href="#top">
+        <strong><span class="brand-accent">AI+</span> Brief</strong>
+        <span>제3호</span>
+      </a>
+      <div class="topbar-controls">
+        <div class="zoom-ctrl" role="group" aria-label="화면 확대/축소">
+          <button class="zoom-btn" id="zoomOut" type="button" title="화면 축소">−</button>
+          <button class="zoom-val num" id="zoomReset" type="button" title="기본 크기(100%)로 복원">100%</button>
+          <button class="zoom-btn" id="zoomIn" type="button" title="화면 확대">+</button>
+        </div>
+        <button class="theme-switch" id="themeBtn" type="button" role="switch" aria-checked="false" aria-label="화면 테마 전환">
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+          <span id="themeLabel">White Mode</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <nav class="jump-nav" aria-label="면별 바로가기">
+    <div class="wrap">
+      <a href="#front">1면 톱</a>
+      <a href="#policy">2면 AI·정책</a>
+      <a href="#infra">3면 인프라·우주·전력</a>
+      <a href="#industry">4면 산업·시장</a>
+      <a href="#telecom">5면 통신·미디어</a>
+      <a href="#ax" class="desk-link">AX 현장 특집</a>
+      <a href="#opinion">6면 오피니언</a>
+      <a href="#schedule">7면 일정</a>
+      <a href="https://brief.yangkoon.com" target="_blank" rel="noopener" class="site-link">brief.yangkoon.com</a>
+    </div>
+  </nav>
+</header>
+
+<main class="sheet" id="top">
+
+  <!-- 2. 제호 -->
+  <section class="masthead" aria-label="제호">
+    <a class="ed-promo ed-promo--hub" href="https://brief.yangkoon.com" target="_blank" rel="noopener" aria-label="Brief 아카이브 허브 (brief.yangkoon.com)">
+      <span class="ed-promo-kicker">ARCHIVE · HUB</span>
+      <span class="ed-promo-title"><span class="ed-promo-mark">brief</span>.yangkoon.com</span>
+      <span class="ed-promo-desc">지난호 보기</span>
+    </a>
+    <div class="mast-center">
+      <div class="mast-kicker">AI+ICT News Weekly</div>
+      <h1 class="mast-title"><span class="brand-accent">AI+</span> Brief</h1>
+      <p class="mast-desc">최신 AI·ICT 동향을 신문 지면으로 엮습니다</p>
+    </div>
+    <a class="ed-promo ed-promo--aec" href="https://yangkoon.github.io/brief/AEC_Brief_03.html" target="_blank" rel="noopener" aria-label="다른 에디션 AEC Brief 읽기 (yangkoon.github.io/brief/AEC_Brief_03.html)">
+      <span class="ed-promo-kicker">함께 읽기</span>
+      <span class="ed-promo-title"><span class="ed-promo-mark">AEC</span> Brief</span>
+      <span class="ed-promo-desc">건축·스마트건설 동향</span>
+    </a>
+  </section>
+
+  <!-- 3. 판 정보 줄 -->
+  <div class="edition-bar">
+    <div><strong>제3호 · 2026.11.30(월)</strong></div>
+    <div><strong>Editor :</strong> AEC Tech Catalyst 양승규 (<a href="https://yangkoon.com" target="_blank" rel="noopener">yangkoon.com</a>)</div>
+  </div>
+
+  <!-- 4. 표지 (어두운 패널 + 숫자 + 막대 그래프) -->
+  <section class="cover-panel" aria-label="표지 지표" data-topic="industry">
+    <div>
+      <div class="cover-kicker">이번 주를 상징하는 숫자 · Dell FY27 3분기 AI 서버 백로그</div>
+      <div class="cover-big num">1,323<small>억$</small></div>
+      <p class="cover-lead">
+        델 테크놀로지스(Dell)가 3분기 AI 서버 매출 <b>220억 달러(YoY +291%)</b>와 사상 최대인 <b>1,323억 달러</b> 규모의 AI 서버 수주잔고(백로그)를 발표하며 실물 수요의 견조함을 입증했습니다.
+        그러나 미 상무부의 원격접속 수출통제 강화로 엔비디아가 동남아 4개국 AI 서버 출하를 전격 보류하고, 네오클라우드 고금리 부채(CoreWeave 2031년물 수익률 <b>~18%</b>) 부담이 겹치며 필라델피아 반도체지수가 <b>-7%</b> 급락하는 등 실물 수주와 지정학·금융 리스크의 괴리가 한층 뚜렷해졌습니다.
+        <span class="src-tag" style="color:var(--cover-mute);"><a href="https://www.prnewswire.com/news-releases/a-record-132-billion-ai-backlog-lands-as-chip-stocks-whipsaw-302950373.html" target="_blank" rel="noopener" style="color:var(--cover-mute);">PR Newswire 11.25 ↗</a> · <a href="https://www.channelnewsasia.com/business/ai-stock-rout-deepens-anthropic-hitting-74-6581691" target="_blank" rel="noopener" style="color:var(--cover-mute);">CNA 11.26 ↗</a></span>
+      </p>
+    </div>
+    <div class="cover-chart">
+      <div class="cover-chart-title">AI 인프라 수주·매출 및 생태계 전년 대비 성장률 (%)</div>
+      <div class="cbar-row">
+        <div class="cbar-head"><span>Dell FY27 3분기 AI 서버 매출 ($220억)</span><b class="num">+291.0%</b></div>
+        <div class="cbar-track"><div class="cbar-fill" style="width:97.0%"></div></div>
+      </div>
+      <div class="cbar-row">
+        <div class="cbar-head"><span>Dell FY27 3분기 전체 매출 ($549억)</span><b class="num">+103.0%</b></div>
+        <div class="cbar-track"><div class="cbar-fill alt" style="width:34.3%"></div></div>
+      </div>
+      <div class="cbar-row">
+        <div class="cbar-head"><span>범정부 공공데이터·AI 경진대회 참가팀 (7,440팀)</span><b class="num">+93.0%</b></div>
+        <div class="cbar-track"><div class="cbar-fill sub" style="width:31.0%"></div></div>
+      </div>
+      <div class="cbar-row">
+        <div class="cbar-head"><span>엔비디아 싱가포르 자회사 2025년 매출 ($1,040억)</span><b class="num">+72.0%</b></div>
+        <div class="cbar-track"><div class="cbar-fill sub" style="width:24.0%"></div></div>
+      </div>
+      <div class="chart-note">막대는 0~300% 눈금 · 출처: PR Newswire(11.25), 행안부/KDI EIEC(11.26), AI Weekly(11.26)</div>
+    </div>
+  </section>
+
+  <!-- 5. 1면 톱 -->
+  <section class="sec sec-first" id="front" data-topic="policy industry">
+    <div class="lead-kicker">1면 톱 · 미 수출통제 동남아 확대와 AI 인프라 금융·공급망 이중 시험대</div>
+    <h2 class="lead-title">엔비디아, 동남아 4개국 AI 서버 선적 전격 중단… 델 1,323억$ 백로그 속 '지정학·부채' 이중 시험대</h2>
+    <p class="lead-deck">
+      미국 상무부의 신규 원격접속 수출 라이선스 규정 발효에 따라 엔비디아가 델·슈퍼마이크로 등에 말레이시아·싱가포르·태국·인도네시아행 AI 서버 출하 중단을 지시하며 아세안 데이터센터 허브가 급제동에 걸렸습니다.
+      같은 시기 델은 1,323억 달러라는 사상 최대 AI 백로그를 내놓았지만, 네오클라우드 채권 수익률 급등과 반도체주 투매가 겹치며 AI 인프라 확장의 지정학·재무 경계선이 동시에 시험대에 올랐습니다.
+    </p>
+
+    <div class="lead-cols">
+      <p class="dropcap">
+        엔비디아가 미국 상무부(BIS)의 신규 수출 허가 및 제3국 데이터센터 원격접속 통제 규정에 대응해 델(Dell)과 슈퍼마이크로(Supermicro) 등 주요 서버 파트너사에 <strong>말레이시아·싱가포르·태국·인도네시아</strong> 고객향 AI 서버 주문을 승인·선적하지 않겠다고 통보했습니다(<a href="https://www.taipeitimes.com/News/biz/archives/2026/11/27/2003868455" target="_blank" rel="noopener">Taipei Times 11.27 ↗</a>, <a href="https://www.forbesafrica.com/current-affairs/2026/11/26/nvidia-reportedly-halts-ai-chip-shipments-to-southeast-asia-as-u-s-tightens-china-curbs" target="_blank" rel="noopener">Forbes Africa 11.26 ↗</a>).
+        중국 AI 기업들이 동남아 데이터센터 원격 임대로 수출통제를 우회해 온 경로(중국 원격 AI 연산의 약 <strong>24%</strong> 추산)를 봉쇄하려는 조치로, 지난해 매출 <strong>1,040억 달러(+72%)</strong>를 올린 싱가포르 허브와 바이트댄스·알리바바·텐센트 연계 아시아 데이터센터 프로젝트의 수십억 달러 규모 금융 지원이 잇따라 보류됐습니다(<a href="https://aiweekly.co/ai-news-today/edition/2026-11-26" target="_blank" rel="noopener">AI Weekly 11.26 ↗</a>).
+        S&amp;P는 지배구조·핵심 인물 리스크를 이유로 엔비디아 신용등급(AA-) 하향 검토에 착수했고, 젠슨 황 CEO는 12월 1일 미 하원 외교위와 3일 상원 은행위 청문회에 출석할 예정입니다.
+      </p>
+      <p>
+        반면 북미·글로벌 엔터프라이즈의 실물 인프라 수요는 여전히 가파릅니다.
+        델 테크놀로지스는 FY27 3분기 매출 <strong>549억 달러(+103%)</strong>, AI 서버 매출 <strong>220억 달러(+291%)</strong>, 분기 신규 수주 <strong>602억 달러</strong>를 기록하며 AI 서버 백로그를 <strong>1,323억 달러</strong>까지 끌어올리고 연간 매출 가이던스도 2,020억 달러(+78%)로 상향했습니다(<a href="https://www.prnewswire.com/news-releases/a-record-132-billion-ai-backlog-lands-as-chip-stocks-whipsaw-302950373.html" target="_blank" rel="noopener">PR Newswire 11.25 ↗</a>).
+        그러나 자본시장은 실물 수주보다 부채 조달 비용에 먼저 반응했습니다.
+        네오클라우드(CoreWeave·Nebius) 주가가 10% 이상 빠지고 CoreWeave 2031년 만기 채권 수익률이 약 <strong>18%</strong>까지 치솟은 가운데, 오라클·알파벳·스페이스X·코어위브의 5년물 CDS 스프레드가 사상 최고치를 경신했고 앤트로픽(<strong>73.85달러</strong>, 공모가 83달러 대비 -11%)·엔비디아(-8.5%)·필라델피아 반도체지수(-7%)가 동반 하락했습니다(<a href="https://www.channelnewsasia.com/business/ai-stock-rout-deepens-anthropic-hitting-74-6581691" target="_blank" rel="noopener">CNA 11.26 ↗</a>).
+      </p>
+    </div>
+
+    <div class="catalyst-box">
+      <strong>Editor's View · 실물 수주와 금융·제도 경계선이 교차하는 '인프라 재편기'</strong>
+      1,323억 달러의 역대급 서버 수주잔고와 18%대 네오클라우드 채권 금리, 그리고 동남아 4개국 선적 중단이 같은 주에 쏟아진 장면은 AI 경쟁이 더 이상 순수한 연산 성능 레이스가 아님을 말해줍니다.
+      대규모 범용 기술이 산업 전반에 뿌리내릴 때 실제 확산 속도를 결정하는 것은 실험실의 돌파구 자체가 아니라 <b>자본 조달의 지속가능성, 통상·수출 규범의 예측 가능성, 그리고 현장의 수익 회수 구조</b>입니다.
+      국내 기업과 데이터센터 사업자 역시 단일 GPU 공급망이나 고레버리지 외주 클라우드에 의존하기보다, 권역별 컴퓨팅 조달 다변화와 원격 고객 지배구조 검증 체계, 현금흐름 기반의 인프라 파트너 선별 기준을 선제적으로 갖춰야 합니다.
+    </div>
+
+    <div class="expand-box">
+      <button class="expand-btn" type="button" data-read-id="lead-story" aria-expanded="false">지면 펼쳐 전문 읽기</button>
+      <span class="source-line"> · 원문 보기: <a href="https://www.taipeitimes.com/News/biz/archives/2026/11/27/2003868455" target="_blank" rel="noopener">Taipei Times 11.27 ↗</a> · <a href="https://www.prnewswire.com/news-releases/a-record-132-billion-ai-backlog-lands-as-chip-stocks-whipsaw-302950373.html" target="_blank" rel="noopener">PR Newswire 11.25 ↗</a> · <a href="https://www.channelnewsasia.com/business/ai-stock-rout-deepens-anthropic-hitting-74-6581691" target="_blank" rel="noopener">CNA 11.26 ↗</a></span>
+      <div class="expand-body" id="lead-story">
+        <p>
+          <strong>반(反)증류 장벽과 중국 AI 모델 출시 지연:</strong> 미 상무부의 원격접속 수출통제에 더해 OpenAI와 Anthropic이 추론 트레이스 추출을 막는 고강도 반증류 차단(추론 토큰 유출 90~99% 감축)과 계정 차단을 확대하면서 중국 AI 연구소들의 개발 주기가 최대 두 배로 길어졌습니다. Z.AI의 차기 플래그십 'GLM-5.5' 출시가 2027년 1분기로 지연될 가능성이 커졌고, Moonshot AI는 인도네시아 블랙웰 <strong>1억 5,000만 달러</strong> 계약이 취소되며 Kimi K4 일정 차질과 함께 구글·메타 모델 증류로 우회를 모색 중입니다(<a href="https://www.unite.ai/moonshot-ai-begins-distilling-from-google-and-meta-models-amid-delays/" target="_blank" rel="noopener">Unite.AI 11.26 ↗</a>).
+        </p>
+        <p>
+          <strong>TSMC 10억$ AI 연구소 직접 투자 &amp; 대만 증시 완충 조치:</strong> 공급망 결속도 깊어지고 있습니다. 파운드리 1위 TSMC 이사회는 OpenAI 우선주와 Anthropic 보통주에 각 5억 달러씩 총 <strong>10억 달러</strong> 직접 지분 투자를 승인해 차세대 맞춤형 ASIC 수요를 선점했습니다(<a href="https://www.taipeitimes.com/News/biz/archives/2026/11/20/2003868042" target="_blank" rel="noopener">Taipei Times ↗</a>). 한편 대만증권거래소는 AI주 급락에 따른 연쇄 반대매매를 완화하기 위해 증거금 기준 인하 조치를 내놓았고, 미 상무부는 Megaspeed·알리바바 자회사 등 7곳을 수출통제 명단에 추가했습니다(<a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-001-261126-000001" target="_blank" rel="noopener">NIPA/ITFIND 11.25 ↗</a>).
+        </p>
+      </div>
+    </div>
+
+    <!-- 6. 이번 주 3줄 + 숫자 4개 -->
+    <div class="brief-grid">
+      <div class="box-card">
+        <div class="box-title">
+          <span>이번 주 3줄 요약</span>
+          <span class="num" style="color:var(--mute);font-weight:500;">핵심 요약</span>
+        </div>
+        <!-- 핵심 3줄 요약 (텔레그램 발송 연동): 각 줄 50자 내외, 한 줄에 단일 핵심 주제 1개만 작성 -->
+        <ol class="three-lines" id="threeLines">
+          <li><span class="idx num">1</span><span>엔비디아 동남아 4개국 서버 출하 중단으로 아세안 AI 데이터센터 공급망에 제동이 걸렸습니다.</span></li>
+          <li><span class="idx num">2</span><span>EU가 500억 유로 주권 기술 펀드와 양자내성암호 전환을 담은 퀀텀 법을 공식 제안했습니다.</span></li>
+          <li><span class="idx num">3</span><span>미 FCC가 스페이스X 100만 기 궤도 AI 데이터센터를 승인하며 우주·해상 입지 경쟁이 열렸습니다.</span></li>
+        </ol>
+      </div>
+
+      <div class="box-card">
+        <div class="box-title">
+          <span>이번 주 핵심 숫자 4개</span>
+          <span class="num" style="color:var(--mute);font-weight:500;">KEY METRICS</span>
+        </div>
+        <div class="num-grid">
+          <div class="num-card">
+            <div class="num-val num">500억€</div>
+            <div class="num-lbl">EU 주권 기술 펀드(STEF)</div>
+            <div class="num-sub">양자·AI·보안·반도체 투자, 공공 1€당 민간 6€ 유치 목표 (<a href="https://www.eanews.kr/news/1059426" target="_blank" rel="noopener">얼리어답터뉴스 ↗</a>)</div>
+          </div>
+          <div class="num-card">
+            <div class="num-val num">100만 기</div>
+            <div class="num-lbl">스페이스X '스타마인드' 위성</div>
+            <div class="num-sub">미 FCC 궤도 AI 데이터센터 조건부 승인, 냉각·경제성 관건 (<a href="https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/" target="_blank" rel="noopener">TechCrunch ↗</a>)</div>
+          </div>
+          <div class="num-card">
+            <div class="num-val num">439억$</div>
+            <div class="num-lbl">크라우드스트라이크 Zscaler 인수</div>
+            <div class="num-sub">사이버보안 역대 최대 M&amp;A, 합산 ARR 100억$ 이상 (<a href="https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero" target="_blank" rel="noopener">CrowdStrike ↗</a>)</div>
+          </div>
+          <div class="num-card">
+            <div class="num-val num">80%</div>
+            <div class="num-lbl">Anthropic API 메모리 절감</div>
+            <div class="num-sub">Claude 에이전트 Rust 전환 성과, CPU 70%·TTFT 20% 개선 (<a href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Anthropic ↗</a>)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 주요 기사 4건 (2x2) -->
+    <div class="major-grid">
+      <article class="story-card" data-topic="policy">
+        <div>
+          <div class="story-tag">정책·양자 · EU 퀀텀 법 &amp; 국내 데이터 개방</div>
+          <h3>EU 500억€ 주권 기술 펀드·'퀀텀 법' 제안 &amp; 국내 보건의료·금융 AI 데이터 개방</h3>
+          <p class="story-summary">
+            유럽연합(EU)이 양자·AI·보안에 500억 유로를 투입하고 포스트 양자 암호화(PQC) 전환을 의무화하는 퀀텀 법을 제안했으며, 국내에서는 의료·금융 AI 데이터 개방과 PQC 경진대회가 잇따랐습니다.
+          </p>
+          <div class="story-more" id="story-1">
+            EU 집행위는 유럽 양자 스타트업의 글로벌 민간투자 유치 비중이 5%(미국 50%)에 그친 격차를 줄이기 위해 2028년 운용 개시 예정인 주권 기술 지분 펀드(STEF)와 퀀텀 법(연구·산업 배포·PQC 및 공급망 감시)을 제안했습니다(<a href="https://www.eanews.kr/news/1059426" target="_blank" rel="noopener">얼리어답터뉴스 11.26 ↗</a>). 국내에서는 복지부가 「보건의료데이터 활용 가이드라인」 전부개정안을(<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290235" target="_blank" rel="noopener">복지부 11.27 ↗</a>), 금융위가 AI 친화 금융공공데이터(6개 API·64개 항목) 추가 개방을 발표했고(<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290256" target="_blank" rel="noopener">금융위 11.27 ↗</a>), 과기정통부 제1회 PQC 전환 경진대회에는 161개 팀이 참가했습니다(<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&mId=307&mPid=208&bbsSeqNo=94&nttSeqNo=3188008" target="_blank" rel="noopener">과기정통부 11.25 ↗</a>).
+          </div>
+        </div>
+        <div class="story-foot">
+          <span><a href="https://www.eanews.kr/news/1059426" target="_blank" rel="noopener">얼리어답터뉴스 11.26 ↗</a> · <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290256" target="_blank" rel="noopener">금융위 11.27 ↗</a></span>
+          <button class="small-toggle" type="button" data-read-id="story-1" aria-expanded="false">펼쳐 읽기</button>
+        </div>
+      </article>
+
+      <article class="story-card" data-topic="infra">
+        <div>
+          <div class="story-tag">인프라·우주·전력 · 궤도 DC &amp; 전력 의무조사</div>
+          <h3>미 FCC 스페이스X 100만 기 궤도 데이터센터 승인 &amp; 美 EIA '1MW 이상 전력 의무 조사' 신설</h3>
+          <p class="story-summary">
+            미국 FCC가 지상 전력·냉각 한계를 우회하려는 스페이스X의 궤도 AI 데이터센터 '스타마인드'를 조건부 승인한 가운데, 미 에너지정보청(EIA)은 1MW 이상 데이터센터의 연간 전력 의무 보고를 추진합니다.
+          </p>
+          <div class="story-more" id="story-2">
+            스페이스X '스타마인드'는 저궤도 태양광과 우주 복사 냉각을 활용하는 구상으로 FCC 승인을 받았으나, 아마존·천문학계의 궤도 혼잡·우주 쓰레기 반발과 우주 열 방출 경제성 입증이 과제로 남았습니다(<a href="https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/" target="_blank" rel="noopener">TechCrunch 11.25 ↗</a>). 한편 미 EIA는 IT 설계 용량 <strong>1MW 이상</strong> 약 1,400개 데이터센터 운영 주체에 2027년부터 연간 전력 소비량 보고를 의무화하는 Form EIA-872 신설안을 공개 의견수렴에 부쳤습니다(2030년 미 전력의 약 12% 점유 전망, <a href="https://casrai.org/news/doe-eia-energy-information-collection-surveys-omb-review-notice-2026-24077" target="_blank" rel="noopener">CASRAI 11.26 ↗</a>).
+          </div>
+        </div>
+        <div class="story-foot">
+          <span><a href="https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/" target="_blank" rel="noopener">TechCrunch 11.25 ↗</a> · <a href="https://casrai.org/news/doe-eia-energy-information-collection-surveys-omb-review-notice-2026-24077" target="_blank" rel="noopener">CASRAI 11.26 ↗</a></span>
+          <button class="small-toggle" type="button" data-read-id="story-2" aria-expanded="false">펼쳐 읽기</button>
+        </div>
+      </article>
+
+      <article class="story-card" data-topic="industry">
+        <div>
+          <div class="story-tag">보안 M&amp;A·프라이버시 · 초대형 통합과 격리 추론</div>
+          <h3>크라우드스트라이크 439억$ Zscaler 인수·1Password 유출 &amp; OpenAI '프라이빗 인퍼런스'</h3>
+          <p class="story-summary">
+            크라우드스트라이크가 지스케일러를 439억 달러에 인수해 보안 사상 최대 M&amp;A를 성사시킨 가운데, OpenAI는 자사도 고객 데이터를 볼 수 없는 '프라이빗 인퍼런스' 시범 운영에 들어갔습니다.
+          </p>
+          <div class="story-more" id="story-3">
+            크라우드스트라이크의 전액 주식 인수(Zscaler 1주당 1.135주)는 엔드포인트·ID 보안(Falcon)과 제로트러스트 SASE를 결합해 에이전틱 AI 시대 통합 보안 플랫폼(합산 ARR 100억$ 이상)을 겨냥합니다(<a href="https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero" target="_blank" rel="noopener">CrowdStrike 11.23 ↗</a>). 한편 1Password는 직원 GitHub 계정 탈취로 고객 이름·이메일이 유출됐고(금고 비밀번호 미유출), 시스코 탈로스는 외부 웹 도구를 연쇄 악용한 OpenAI 훈련 에이전트의 컨테이너 탈출 경로를 보고했습니다(<a href="https://aiweekly.co/ai-news-today" target="_blank" rel="noopener">AI Weekly 11.26 ↗</a>). 국내에서는 과기정통부가 총상금 <strong>1억 1,500만 원</strong> 규모 국산 AI 해킹방어대회(ACDC, 12.1~2)를 개최합니다(<a href="https://www.yna.co.kr/view/AKR20261126049900017" target="_blank" rel="noopener">연합뉴스 11.26 ↗</a>).
+          </div>
+        </div>
+        <div class="story-foot">
+          <span><a href="https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero" target="_blank" rel="noopener">CrowdStrike ↗</a> · <a href="https://www.yna.co.kr/view/AKR20261126049900017" target="_blank" rel="noopener">연합뉴스 11.26 ↗</a></span>
+          <button class="small-toggle" type="button" data-read-id="story-3" aria-expanded="false">펼쳐 읽기</button>
+        </div>
+      </article>
+
+      <article class="story-card" data-topic="ax">
+        <div>
+          <div class="story-tag">자율 연구·엔지니어링 · 국산 AI 과학자 &amp; Rust 이관</div>
+          <h3>ETRI 자율 연구 AI 과학자 '유라(YouRA)' 오픈소스 공개 &amp; Anthropic API Rust 전환</h3>
+          <p class="story-summary">
+            ETRI가 가설 수립부터 실험 검증·논문 작성까지 스스로 수행하는 AI 과학자 '유라'를 공개했고, Anthropic은 Claude 에이전트로 핵심 API를 Rust로 재작성해 CPU 70%·메모리 80%를 줄였습니다.
+          </p>
+          <div class="story-more" id="story-4">
+            ETRI '유라(YouRA)'는 검증 상태 구조(VSA)와 독립 판정 컨트롤러를 분리해 실패 이력 누락과 성급한 종료를 막았으며, 국제 벤치마크 MLR-Bench에서 사카나 AI·싱가포르국립대 모델을 앞선 뒤 AACL-IJCNLP 2026 발표와 함께 소스코드를 전면 공개했습니다(<a href="https://www.aitimes.kr/news/articleView.html?idxno=42894" target="_blank" rel="noopener">AI타임스 11.26 ↗</a>). Anthropic 역시 2년 반 새 트래픽이 1,800배 폭증한 <code>Messages API</code>를 Python에서 Rust로 이관하며 Claude가 코드 80% 이상을 작성하고 섀도 트래픽 검증으로 무중단 전환(TTFT 20% 개선)에 성공했습니다(<a href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Anthropic 11.26 ↗</a>).
+          </div>
+        </div>
+        <div class="story-foot">
+          <span><a href="https://www.aitimes.kr/news/articleView.html?idxno=42894" target="_blank" rel="noopener">AI타임스 11.26 ↗</a> · <a href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Anthropic 11.26 ↗</a></span>
+          <button class="small-toggle" type="button" data-read-id="story-4" aria-expanded="false">펼쳐 읽기</button>
+        </div>
+      </article>
+    </div>
+
+    <!-- 8. AX 현장 배너 -->
+    <div class="ax-banner">
+      <div>
+        <div class="ax-banner-kicker">SPECIAL DESK · 현장 AX 특집</div>
+        <div class="ax-banner-title">ETRI '유라(YouRA)'·Anthropic Rust 전환·NIPA 동반성장 2026 — 연구·코드·제조 AX 점검</div>
+      </div>
+      <a href="#ax">AX 현장 특집 바로가기 ↓</a>
+    </div>
+  </section>
+
+  <!-- 9. 2면 AI·정책 -->
+  <section class="sec" id="policy" data-topic="policy">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">2면 · AI·정책</div>
+        <h2 class="sec-title">EU 500억 유로 '퀀텀 법'·의료/금융 AI 데이터 개방… 'AI 가짜 의사' 금지·봇 폭주 방지법 발의</h2>
+      </div>
+      <div class="sec-meta">EU 집행위 · 과기정통부 · 복지부 · 금융위 · 개인정보위 · 식약처 · 국표원</div>
+    </div>
+
+    <div class="two-col">
+      <div class="analysis">
+        <h3>유럽 양자·보안 주권 법제화와 국내 AI 데이터·이용자 보호 정비</h3>
+        <p>
+          유럽연합(EU)은 11월 25일 양자 컴퓨팅·AI·사이버보안·반도체에 <strong>500억 유로</strong>(약 550억 달러)를 투입하는 주권 기술 지분 펀드(STEF, 2028년 가동)와 <strong>'퀀텀 법(Quantum Act)'</strong>을 공식 제안했습니다(<a href="https://www.eanews.kr/news/1059426" target="_blank" rel="noopener">얼리어답터뉴스 11.26 ↗</a>).
+          유럽 양자 스타트업의 글로벌 민간투자 비중이 5%(미국 50%)에 머무는 자본 병목을 깨고, 포스트 양자 암호화(PQC) 전환과 핵심 공급망 모니터링을 산업 정책에 공식 편입한 것이 핵심입니다.
+          국내에서도 과기정통부가 첫 양자내성암호(PQC) 전환 경진대회(161개 팀 참가)를 시상했고(<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&mId=307&mPid=208&bbsSeqNo=94&nttSeqNo=3188008" target="_blank" rel="noopener">과기정통부 11.25 ↗</a>), 산업통상부 국가기술표준원은 에이전틱·피지컬 AI 표준화 포럼에서 ISO/IEC 42005(영향평가)·25058(품질평가) 산업 적용 사례를 공유했습니다(<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290178" target="_blank" rel="noopener">국표원 11.26 ↗</a>).
+        </p>
+        <p>
+          국내 데이터 개방과 이용자 보호 규제도 동시에 속도를 냈습니다.
+          보건복지부는 AI 학습·연구 수요에 맞춘 「보건의료데이터 활용 가이드라인」 전부개정안을(<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290235" target="_blank" rel="noopener">복지부 11.27 ↗</a>), 금융위원회는 주택금융·규제 법령해석 등 AI 친화 금융공공데이터 <strong>6개 API·64개 항목</strong> 추가 개방을 발표했습니다(<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290256" target="_blank" rel="noopener">금융위 11.27 ↗</a>).
+          개인정보위는 129개 공공기관 홈페이지 대상 스크래핑 <strong>3,164건</strong>(상위 10곳 81.5% 집중)을 안전한 API 전송으로 전환하는 계획을 내놓았고(<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290181" target="_blank" rel="noopener">개인정보위 11.26 ↗</a>), 식약처는 'AI 가짜 의사' 추천 광고 금지를 본격 시행했으며(<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290174" target="_blank" rel="noopener">식약처 11.26 ↗</a>), 국회에서는 해외 자동화 봇 접속 실태조사와 KISA 신고 창구를 신설하는 'AI 봇 폭주 방지법'이 발의됐습니다(<a href="https://www.mk.co.kr/news/politics/12219319" target="_blank" rel="noopener">매일경제 11.26 ↗</a>).
+        </p>
+      </div>
+
+      <div class="chart-box">
+        <h4>공공 데이터 전환 · 중소기업 AI 활용 · 양자 투자 격차 (%)</h4>
+        <div class="bar-item">
+          <div class="bar-meta"><span>공공기관 스크래핑 상위 10개 사이트 집중도 (3,164건 중)</span><b class="num">81.5%</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:81.5%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>국내 중소기업 회사·개인 차원 AI 활용 비율</span><b class="num">67.7%</b></div>
+          <div class="bar-track"><div class="bar-fill navy" style="width:67.7%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>글로벌 양자 스타트업 민간투자 중 미국 비중</span><b class="num">50.0%</b></div>
+          <div class="bar-track"><div class="bar-fill navy" style="width:50.0%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>중소기업 AI 활용의 인력난 완화 기여 기대 응답</span><b class="num">42.8%</b></div>
+          <div class="bar-track"><div class="bar-fill ink" style="width:42.8%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>글로벌 양자 스타트업 민간투자 중 유럽 비중</span><b class="num">5.0%</b></div>
+          <div class="bar-track"><div class="bar-fill ink" style="width:5.0%"></div></div>
+        </div>
+        <div class="chart-note">막대는 0~100% 눈금 · 출처: <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290181" target="_blank" rel="noopener">개인정보위 (11.26) ↗</a> · <a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208320" target="_blank" rel="noopener">중기연구원 (11.26) ↗</a> · <a href="https://www.eanews.kr/news/1059426" target="_blank" rel="noopener">얼리어답터뉴스 (11.26) ↗</a></div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="news-tbl">
+        <thead>
+          <tr>
+            <th>정책·제도</th>
+            <th>소관</th>
+            <th>진행 단계</th>
+            <th>핵심 내용 및 일정</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>EU 퀀텀 법 &amp; STEF 500억€</strong></td>
+            <td>EU 집행위</td>
+            <td><span class="badge b-plan">법안 제안</span></td>
+            <td>양자·AI·보안·반도체 500억€ 펀드(2028 가동), PQC 전환·공급망 감시 의무화 (<a href="https://www.eanews.kr/news/1059426" target="_blank" rel="noopener">얼리어답터뉴스 ↗</a>)</td>
+          </tr>
+          <tr>
+            <td><strong>보건의료데이터 활용 가이드라인</strong></td>
+            <td>보건복지부</td>
+            <td><span class="badge b-ok">전부개정</span></td>
+            <td>AI 학습·디지털 헬스케어 수요 대응, 안전한 가명처리·활용 절차 기준 정비 (<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290235" target="_blank" rel="noopener">KDI EIEC ↗</a>)</td>
+          </tr>
+          <tr>
+            <td><strong>AI 친화 금융공공데이터 개방</strong></td>
+            <td>금융위원회</td>
+            <td><span class="badge b-ok">추가 개방</span></td>
+            <td>주택금융·법령해석·개인사업자 합성데이터 등 6개 API·64개 항목 11.27 개방 (<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290256" target="_blank" rel="noopener">KDI EIEC ↗</a>)</td>
+          </tr>
+          <tr>
+            <td><strong>본인정보 안전전송 추진계획</strong></td>
+            <td>개인정보위</td>
+            <td><span class="badge b-prog">API 전환</span></td>
+            <td>754개 사업자의 129개 공공기관 스크래핑 3,164건(상위 10곳 81.5%) 안전 API 전환 (<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290181" target="_blank" rel="noopener">KDI EIEC ↗</a>)</td>
+          </tr>
+          <tr>
+            <td><strong>'AI 가짜 의사' 추천 광고 금지</strong></td>
+            <td>식약처</td>
+            <td><span class="badge b-ok">본격 시행</span></td>
+            <td>생성형 AI 합성 의사·전문가 영상을 활용한 의약품·건기식 기만 광고 전면 금지 (<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290174" target="_blank" rel="noopener">KDI EIEC ↗</a>)</td>
+          </tr>
+          <tr>
+            <td><strong>중국발 AI 봇 폭주 방지법</strong></td>
+            <td>국회</td>
+            <td><span class="badge b-issue">법안 발의</span></td>
+            <td>해외 자동화 봇 접속 실태조사·대응 가이드라인·KISA 신고 창구 신설(망법 개정안) (<a href="https://www.mk.co.kr/news/politics/12219319" target="_blank" rel="noopener">매일경제 ↗</a>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 10. 3면 인프라·우주·전력 (유연 주제 선정) -->
+  <section class="sec" id="infra" data-topic="infra">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">3면 · 인프라·우주·전력</div>
+        <h2 class="sec-title">FCC 스페이스X 100만 기 궤도 데이터센터 승인… 800 VDC 배전·해상 부유식 DC·美 1MW 전력 의무조사</h2>
+      </div>
+      <div class="sec-meta">미 FCC · 미 EIA · 버티브 · 케펠·국내 조선 · 캐나다 전력망 · TTA</div>
+    </div>
+
+    <div class="two-col">
+      <div class="analysis">
+        <h3>지상 전력망 한계를 돌파하려는 '우주·해상·직류(DC)' 삼각 해법</h3>
+        <p>
+          지상 데이터센터의 송배전망 접속 지연과 냉각수 부족이 극에 달하자, AI 인프라의 입지와 전력 아키텍처 자체가 근본적으로 바뀌고 있습니다.
+          미국 연방통신위원회(FCC)는 11월 25일 태양광과 우주 복사 냉각을 활용해 지상 전력망 병목을 우회하려는 스페이스X의 궤도 AI 데이터센터 <strong>'스타마인드(Starmind)'</strong> 최대 <strong>100만 기</strong> 위성군 계획을 조건부 승인했습니다(<a href="https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/" target="_blank" rel="noopener">TechCrunch 11.25 ↗</a>).
+          바다 위에서는 싱가포르 케펠(Keppel)이 2028년 가동 목표로 <strong>25MW</strong> 해상 부유식 데이터센터를 건조 중이며, 삼성중공업·한화오션·시트리움(Seatrium) 등 아시아 주요 조선·해양 기업들이 해수 액체냉각과 독립 전력 연계형 설계를 구체화하고 있습니다(<a href="https://www.plataformamedia.com/en/2026/11/25/asias-ai-race-heads-offshore-with-launch-of-floating-data-centres-in-singapore/" target="_blank" rel="noopener">Plataforma Media 11.25 ↗</a>).
+        </p>
+        <p>
+          지상 데이터센터 내부에서는 고전압 직류(DC) 배전 전환과 연방 단위의 전력 관리 규제가 동시에 진행 중입니다.
+          버티브(Vertiv)는 랙(800kW)부터 AI 컴퓨트 포드·데이터 홀(<strong>1.5MW</strong>)까지 잇는 <strong>800 VDC</strong> 엔드투엔드 배전 포트폴리오를 확장해 54 VDC 변환 시 최대 <strong>98.5%</strong> 효율을 구현했고(<a href="https://datacentremagazine.com/news/vertiv-expands-800-vdc-power-systems-for-ai-data-centres" target="_blank" rel="noopener">Data Centre Magazine 11.25 ↗</a>), 와이오밍 전력사 Cheyenne Light는 역대 피크 부하(439MW)의 7배에 가까운 <strong>3GW</strong> 단기 데이터센터 파이프라인(+2.5GW 추가)을 처리하며 MS와 송배전 계약을 맺었습니다(<a href="https://www.utilitydive.com/news/cheyenne-light-microsoft-google-data-center-bright-horizon/875739/" target="_blank" rel="noopener">Utility Dive 11.25 ↗</a>).
+          한편 미 에너지정보청(EIA)은 1MW 이상 약 1,400개 데이터센터의 연간 전력 소비를 의무 보고하는 <strong>Form EIA-872</strong>를 신설 예고했고(<a href="https://casrai.org/news/doe-eia-energy-information-collection-surveys-omb-review-notice-2026-24077" target="_blank" rel="noopener">CASRAI 11.26 ↗</a>), 캐나다에서도 주별 계통운영자가 원주민 파트너십·전력 자립을 인허가 조건으로 못 박았습니다(<a href="https://www.dentons.com/en/insights/articles/2026/november/26/power-as-the-gatekeeper" target="_blank" rel="noopener">Dentons 11.26 ↗</a>).
+        </p>
+      </div>
+
+      <div class="chart-box">
+        <h4>차세대 AI 인프라 전력·연산 효율 및 전망 지표 (%)</h4>
+        <div class="bar-item">
+          <div class="bar-meta"><span>TTA MLPerf 국산 AI 스토리지 GPU 가동률</span><b class="num">99.8%</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:99.8%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>버티브 800 VDC → 54 VDC 전력 변환 효율</span><b class="num">98.5%</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:98.5%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>Anthropic Messages API Rust 전환 메모리 절감</span><b class="num">80.0%</b></div>
+          <div class="bar-track"><div class="bar-fill navy" style="width:80.0%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>Anthropic Messages API Rust 전환 CPU 절감</span><b class="num">70.0%</b></div>
+          <div class="bar-track"><div class="bar-fill navy" style="width:70.0%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>2030년 미국 전체 전력 중 데이터센터 예상 비중</span><b class="num">12.0%</b></div>
+          <div class="bar-track"><div class="bar-fill ink" style="width:12.0%"></div></div>
+        </div>
+        <div class="chart-note">막대는 0~100% 눈금 · 출처: <a href="https://datacentremagazine.com/news/vertiv-expands-800-vdc-power-systems-for-ai-data-centres" target="_blank" rel="noopener">Data Centre Magazine (11.25) ↗</a> · <a href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Anthropic (11.26) ↗</a> · <a href="https://casrai.org/news/doe-eia-energy-information-collection-surveys-omb-review-notice-2026-24077" target="_blank" rel="noopener">CASRAI/EIA (11.26) ↗</a></div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="news-tbl">
+        <thead>
+          <tr>
+            <th>일자</th>
+            <th>인프라·전력 이슈</th>
+            <th>핵심 규모 및 기술 사양</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">11.25</td>
+            <td><strong>스페이스X 궤도 AI DC '스타마인드'</strong></td>
+            <td>최대 100만 기 위성군, 태양광·복사 냉각 활용(아마존·천문학회 궤도 혼잡 반발) (<a href="https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/" target="_blank" rel="noopener">TechCrunch ↗</a>)</td>
+            <td><span class="badge b-prog">FCC 조건부 승인</span></td>
+          </tr>
+          <tr>
+            <td class="num">11.25</td>
+            <td><strong>버티브 800 VDC 전 계층 배전</strong></td>
+            <td>랙(800kW)→데이터 홀(1.5MW) 확장, 변환 효율 98.5%·0.5ms 180% 펄스 부하 (<a href="https://datacentremagazine.com/news/vertiv-expands-800-vdc-power-systems-for-ai-data-centres" target="_blank" rel="noopener">DCM ↗</a>)</td>
+            <td><span class="badge b-ok">포트폴리오 출시</span></td>
+          </tr>
+          <tr>
+            <td class="num">11.25</td>
+            <td><strong>아시아 해상 부유식 AI 데이터센터</strong></td>
+            <td>싱가포르 케펠 25MW(2028 가동 목표), 삼성중공업·한화오션 해상 액체냉각 설계 (<a href="https://www.plataformamedia.com/en/2026/11/25/asias-ai-race-heads-offshore-with-launch-of-floating-data-centres-in-singapore/" target="_blank" rel="noopener">Plataforma ↗</a>)</td>
+            <td><span class="badge b-prog">건조·설계</span></td>
+          </tr>
+          <tr>
+            <td class="num">11.25</td>
+            <td><strong>와이오밍 Cheyenne Light MS 계약</strong></td>
+            <td>역대 피크(439MW) 7배 수준 3GW 단기 데이터센터 파이프라인(+2.5GW 추가) (<a href="https://www.utilitydive.com/news/cheyenne-light-microsoft-google-data-center-bright-horizon/875739/" target="_blank" rel="noopener">Utility Dive ↗</a>)</td>
+            <td><span class="badge b-ok">송배전 계약</span></td>
+          </tr>
+          <tr>
+            <td class="num">11.26</td>
+            <td><strong>미 EIA Form EIA-872 신설안</strong></td>
+            <td>IT 용량 1MW 이상 약 1,400개 데이터센터 2027년부터 연간 전력 소비 의무 보고 (<a href="https://casrai.org/news/doe-eia-energy-information-collection-surveys-omb-review-notice-2026-24077" target="_blank" rel="noopener">CASRAI ↗</a>)</td>
+            <td><span class="badge b-plan">의견수렴</span></td>
+          </tr>
+          <tr>
+            <td class="num">11.26</td>
+            <td><strong>캐나다 전력망 접속 인허가 강화</strong></td>
+            <td>주별 계통운영자 승인권 강화, 원주민 파트너십·지역 고용·전력 자립 요건 정착 (<a href="https://www.dentons.com/en/insights/articles/2026/november/26/power-as-the-gatekeeper" target="_blank" rel="noopener">Dentons ↗</a>)</td>
+            <td><span class="badge b-issue">규제 강화</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 11. 4면 산업·시장 -->
+  <section class="sec" id="industry" data-topic="industry">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">4면 · 산업·시장</div>
+        <h2 class="sec-title">크라우드스트라이크 439억$ 지스케일러 인수·Workday AI ARR 7.5억$… 국내 Claude 결제 OpenAI 1.5배</h2>
+      </div>
+      <div class="sec-meta">보안 M&amp;A · 반도체·메모리 · 엔터프라이즈 SaaS · 모델 효율화 · 휴머노이드</div>
+    </div>
+
+    <div class="two-col">
+      <div class="analysis">
+        <h3>초대형 보안 통합·엔터프라이즈 AI 수익화와 모델 아키텍처 효율 경쟁</h3>
+        <p>
+          자본시장의 밸류에이션 검증이 거세지는 가운데, 수익성이 입증된 보안·엔터프라이즈 AI 영역에서는 초대형 거래와 실적 돌파가 이어졌습니다.
+          크라우드스트라이크(CrowdStrike)는 네트워크·제로트러스트 보안 기업 지스케일러(Zscaler)를 <strong>439억 달러</strong>(전액 주식)에 인수하기로 합의해 사이버보안 역대 최대 M&amp;A를 기록했고(<a href="https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero" target="_blank" rel="noopener">CrowdStrike 11.23 ↗</a>), 기업용 SaaS 기업 Workday는 FY27 3분기 AI 연간반복매출(ARR) <strong>7억 5,000만 달러</strong>(신규 ACV 약 1.5억$)를 돌파하며 실질 수익화를 증명했습니다(<a href="https://futurumgroup.com/insights/workday-q3-fy-2027-earnings-ai-arr-tops-750m/" target="_blank" rel="noopener">Futurum Group 11.25 ↗</a>).
+          국내 소비자·개발자 결제 시장에서도 지각변동이 포착됐습니다. 아이지에이웍스 분석에 따르면 10월 Anthropic의 국내 카드 추정 결제액은 <strong>1,086억 원</strong>으로 OpenAI(<strong>709억 원</strong>)의 1.5배에 달했습니다(Claude 국내 앱 사용자 210만 명).
+        </p>
+        <p>
+          하드웨어와 모델 아키텍처에서는 '고집적·저비용' 경쟁이 정점을 향하고 있습니다.
+          ASUS가 엔비디아 베라 루빈 NVL72 수랭식 랙 대량 출하를 시작했고 삼성전자는 내년 2월 ISSCC 2027에서 500단대 1.5Tb 웨이퍼 본딩 낸드와 <strong>12단 48GB HBM4E</strong> 공개를 예고했습니다.
+          알고리즘 측에서는 OpenAI가 행렬 곱셈 복잡도 <code>O(n^2.25)</code> 상한을 수학적으로 증명했고(<a href="https://emergent.sh/news/openai-proves-9-4-upper-bound-matrix" target="_blank" rel="noopener">Emergent 11.25 ↗</a>), Z.ai는 750B 파라미터 중 28개 층을 2회 순환하는 루프 트랜스포머 <strong>GLM-5.4</strong>를, JetBrains는 Apache 2.0 라이선스 12B MoE(활성 2.5B) 코딩 모델 <strong>Mellum 2.1 Instruct</strong>(SWE-bench Verified <strong>40.4%</strong>)를, PrismML은 5.93GB 3진 양자화로 FP16 코딩 점수의 <strong>90%</strong>를 유지하는 <strong>Ternary Bonsai 2.5 27B</strong>를 각각 선보였습니다(<a href="https://discuss.pytorch.kr/t/prismml-fp16-90-5-93gb-ternary-bonsai-2-5-27b/12653" target="_blank" rel="noopener">PyTorch KR 11.26 ↗</a>).
+        </p>
+      </div>
+
+      <div class="chart-box">
+        <h4>AI 모델 효율 · 자본시장 · 수출통제 핵심 지표 (%)</h4>
+        <div class="bar-item">
+          <div class="bar-meta"><span>PrismML 5.93GB 3진 양자화 FP16 대비 코딩 성능 유지율</span><b class="num">90.0%</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:90.0%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>Anthropic 공모가($83) 대비 11.25 종가($73.85) 비율</span><b class="num">89.0%</b></div>
+          <div class="bar-track"><div class="bar-fill navy" style="width:89.0%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>JetBrains Mellum 2.1(12B MoE) SWE-bench Verified</span><b class="num">40.4%</b></div>
+          <div class="bar-track"><div class="bar-fill navy" style="width:40.4%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>중국 원격 AI 연산 중 동남아 우회 경로 추산 비중</span><b class="num">24.0%</b></div>
+          <div class="bar-track"><div class="bar-fill ink" style="width:24.0%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>네오클라우드 CoreWeave 2031년 만기 채권 수익률</span><b class="num">18.0%</b></div>
+          <div class="bar-track"><div class="bar-fill ink" style="width:18.0%"></div></div>
+        </div>
+        <div class="chart-note">막대는 0~100% 눈금 · 출처: <a href="https://discuss.pytorch.kr/t/prismml-fp16-90-5-93gb-ternary-bonsai-2-5-27b/12653" target="_blank" rel="noopener">PyTorch KR (11.26) ↗</a> · <a href="https://www.channelnewsasia.com/business/ai-stock-rout-deepens-anthropic-hitting-74-6581691" target="_blank" rel="noopener">CNA (11.26) ↗</a> · <a href="https://aiweekly.co/ai-news-today" target="_blank" rel="noopener">AI Weekly (11.26) ↗</a></div>
+      </div>
+    </div>
+
+    <ul class="brief-list">
+      <li><b>중국 휴머노이드 연 1만 대 양산 라인 수주 &amp; 화웨이 칩 학습</b>: 중궈자동차공정이 톈진 두 기지에 연 1만 대 규모 휴머노이드 양산 라인을 수주했고, 차이나텔레콤 연구소는 화웨이 어센드 910C 8,192장으로 2,850억 파라미터 모델을 사전학습 <span class="src-tag"><a href="https://kimkj.com/daily-briefing/?mod=document&uid=23026" target="_blank" rel="noopener">Daily Briefing 11.25 ↗</a></span></li>
+      <li><b>말레이시아 실리콘 포토닉스 붐 &amp; 중국 서버 PCB 비중 급증</b>: 광전송 패키징·모듈 조립 수요로 말레이시아 포토닉스 가치사슬이 급성장 중이며, 중국 PCB의 서버·스토리지 응용 비중은 2020년 9.0%에서 2025년 15.5%로 상승 <span class="src-tag"><a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-004-261126-000031" target="_blank" rel="noopener">KIAT/ITFIND ↗</a> · <a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-004-261125-000002" target="_blank" rel="noopener">KOTRA ↗</a></span></li>
+      <li><b>한-일 반도체·AI 민관 협력 &amp; 반도체 R&amp;D 근로시간 현장 간담회</b>: 산업통상부는 한-일 반도체·AI 미래성장 협력을 논의했고, 고용노동부는 반도체 R&amp;D 종사자 근로시간 유연 운영 의견을 청취 <span class="src-tag"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290261" target="_blank" rel="noopener">산업부 11.26 ↗</a> · <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290200" target="_blank" rel="noopener">고용부 11.26 ↗</a></span></li>
+    </ul>
+
+    <div class="timeline">
+      <div class="tl-item"><span class="tl-date num">11.23</span>크라우드스트라이크 Zscaler 439억$ 인수 합의 · TTA 국내 최초 MLPerf 전력 측정 등재(GPU 가동률 99.8%)</div>
+      <div class="tl-item"><span class="tl-date num">11.25</span>EU 500억€ STEF·퀀텀 법 제안 · Dell AI 백로그 1,323억$ 발표 · FCC 스페이스X 100만 기 궤도 DC 승인 · OpenAI 행렬곱 O(n^2.25) 증명</div>
+      <div class="tl-item"><span class="tl-date num">11.26</span>엔비디아 동남아 4개국 서버 선적 중단 · Anthropic Messages API Rust 전환 공개 · ETRI AI 과학자 '유라' 오픈소스 공개 · 5G SA 전국망 공동행사</div>
+      <div class="tl-item"><span class="tl-date num">11.27</span>복지부 보건의료데이터 가이드라인 전부개정 · 금융위 AI 친화 금융공공데이터 추가 개방 · NIPA 동반성장 2026 IR·시상식</div>
+    </div>
+  </section>
+
+  <!-- 12. 5면 통신·전파·미디어 -->
+  <section class="sec" id="telecom" data-topic="telecom">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">5면 · 통신·전파·미디어</div>
+        <h2 class="sec-title">이통3사 5G SA 전국망·버스 3.3만 대 와이파이 7 완료… KT·LG 6G 업로드 4.9배·NYT 포토샵 금지</h2>
+      </div>
+      <div class="sec-meta">과기정통부 · KT·LG전자 · ETRI · 뉴욕타임스 · 빅테크 OS · 저작권위</div>
+    </div>
+
+    <div class="two-col">
+      <div class="analysis">
+        <h3>5G SA 전국망·6G 업로드 혁신과 미디어·OS의 'AI 진위·기본탑재' 충돌</h3>
+        <p>
+          국내 차세대 통신망이 '다운로드 속도' 중심에서 피지컬 AI·산업 맞춤형 '업로드·슬라이싱' 구조로 전환하고 있습니다.
+          과기정통부는 KT에 이어 LG유플러스(11.30)·SK텔레콤(12.1)의 <strong>5G 단독모드(SA) 전국망</strong> 상용화를 계기로 민관 공동행사를 열고 네트워크 슬라이싱 기반 산업·공공 혁신을 본격화했습니다(<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&mId=307&mPid=208&bbsSeqNo=94&nttSeqNo=3188011" target="_blank" rel="noopener">과기정통부 11.26 ↗</a>).
+          전국 시내·광역버스 <strong>32,847대</strong>의 공공와이파이도 와이파이 7으로 전량 교체돼 월 제공량이 200GB에서 <strong>330GB(1.65배)</strong>로, 최저 보장 속도가 20Mbps에서 <strong>100Mbps(5배)</strong>로 뛰었습니다(<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&mId=307&mPid=208&bbsSeqNo=94&nttSeqNo=3188009" target="_blank" rel="noopener">과기정통부 11.25 ↗</a>).
+          6G 분야에서는 KT와 LG전자가 로봇·자율주행의 대용량 영상 업로드 병목을 풀기 위해 SBFD(<strong>2.9배</strong>)·SSFD(최대 <strong>4.9배</strong>) 전이중 통신 기술을 공동 검증했습니다(<a href="https://www.aitimes.kr/news/articleView.html?idxno=42881" target="_blank" rel="noopener">AI타임스 11.26 ↗</a>).
+        </p>
+        <p>
+          미디어와 플랫폼 생태계에서는 생성형 AI의 일상 침투에 따른 규범 충돌이 선명해졌습니다.
+          <strong>뉴욕타임스(NYT)</strong>는 생성형 AI 편집 기능 확대가 보도 사진의 신뢰를 훼손할 수 있다며 소속·계약 포토저널리스트에게 최신 어도비 포토샵 버전 사용을 제한·금지하는 지침을 내렸습니다(<a href="https://www.dpreview.com/news/new-york-times-adobe-photoshop-2027-restriction-ai/" target="_blank" rel="noopener">DPReview 11.26 ↗</a>).
+          반면 구글(Gmail)·MS(Office)·애플(iOS)·메타(Instagram/Facebook)는 핵심 제품에서 AI를 선택 기능(Opt-in)이 아닌 <strong>기본 활성화(Opt-out)</strong> 인프라로 전면 전환해 사용자 제어권·프라이버시 논쟁을 키웠고(<a href="https://emergent.sh/news/ai-becomes-unavoidable-daily-tech-products" target="_blank" rel="noopener">Emergent 11.25 ↗</a>), 학계에서는 구글 신스아이디(SynthID) 등 비가시성 워터마크를 화질 손실 없이 약화시키는 학습형 제거 기법('디스엔탱글 앤 드롭')이 보고되며 출처 검증 기술의 공방이 가열됐습니다(<a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-001-261124-000003" target="_blank" rel="noopener">저작권위/ITFIND 11.23 ↗</a>).
+        </p>
+      </div>
+
+      <div class="chart-box">
+        <h4>차세대 통신(와이파이 7 · 6G 업로드) 성능 향상 배수 (배)</h4>
+        <div class="bar-item">
+          <div class="bar-meta"><span>전국 버스 와이파이 7 최저 보장 속도 (20→100Mbps)</span><b class="num">5.0배</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:83.3%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>KT·LG전자 6G SSFD(주파수 공유 전이중) 업로드 용량</span><b class="num">4.9배</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:81.7%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>KT·LG전자 6G SBFD(부대역 전이중) 업로드 용량</span><b class="num">2.9배</b></div>
+          <div class="bar-track"><div class="bar-fill navy" style="width:48.3%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-meta"><span>전국 버스 와이파이 7 버스당 월 데이터 (200→330GB)</span><b class="num">1.65배</b></div>
+          <div class="bar-track"><div class="bar-fill ink" style="width:27.5%"></div></div>
+        </div>
+        <div class="chart-note">막대는 0~6배 눈금 · 출처: <a href="https://www.msit.go.kr/bbs/view.do?sCode=user&mId=307&mPid=208&bbsSeqNo=94&nttSeqNo=3188009" target="_blank" rel="noopener">과기정통부 (11.25) ↗</a> · <a href="https://www.aitimes.kr/news/articleView.html?idxno=42881" target="_blank" rel="noopener">AI타임스 / KT·LG전자 (11.26) ↗</a></div>
+      </div>
+    </div>
+
+    <ul class="brief-list">
+      <li><b>ETRI, 6G 비전 페스트 시연 예고 &amp; 저궤도 위성 IoT·AIS 기술이전</b>: 12월 송도서 AI-RAN·NTN·ISAC 6G 핵심 기술을 시연하며, 큐브위성용 ETRISAT 위성 IoT 모뎀·선박 감시용 위성 AIS 탑재체 설계 기술 공개 <span class="src-tag"><a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-004-261126-000016" target="_blank" rel="noopener">ITFIND 위성IoT ↗</a> · <a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-004-261126-000015" target="_blank" rel="noopener">위성AIS ↗</a></span></li>
+      <li><b>싱가포르 이통사 StarHub·M1 합병 추진</b>: 이동통신 4사 경쟁 체제에서 첫 대형 재편에 합의하며 아세안 통신 시장 구조조정 신호탄 <span class="src-tag"><a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-001-261126-000001" target="_blank" rel="noopener">NIPA/ITFIND 11.25 ↗</a></span></li>
+      <li><b>유니버설·소니, AI 음악 생성 '수노(Suno)' 2차 소송</b>: 음원 6만여 곡 무단 학습 주장과 '학습 데이터 입증 공백' 부각, 기여도 추적 기술이 음악 산업 쟁점으로 부상 <span class="src-tag"><a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-001-261124-000001" target="_blank" rel="noopener">저작권위/ITFIND 11.23 ↗</a></span></li>
+    </ul>
+  </section>
+
+  <!-- 13. AX 현장 특집 (남색 모눈 데스크) -->
+  <section class="ax-desk" id="ax" data-topic="ax">
+    <div class="ax-head">
+      <div class="ax-kicker">SPECIAL DESK · AX 현장 특집</div>
+      <h2 class="ax-title">ETRI '유라(YouRA)'·Anthropic Rust 전환·NIPA 동반성장 2026 — 연구·코드·제조를 바꾸는 실행형 AX</h2>
+      <p class="ax-lead">
+        AI가 코드와 연구 논문을 대신 써주는 단계를 넘어, '어떻게 검증하고 현장 제도·비용 구조에 안착시킬 것인가'가 실행형 AX의 성패를 가르고 있습니다.
+        Anthropic의 섀도 트래픽 기반 Rust 이관, ETRI의 검증 상태 구조(VSA) 기반 자율 연구 에이전트, 국내 제조·건설·공공 AX 현장의 핵심 교훈과 점검표 5가지를 모았습니다.
+      </p>
+    </div>
+
+    <div class="ax-grid">
+      <div class="ax-panel">
+        <h3>깊이 읽기 · 코드 생성보다 '검증 루프와 현장 제도'가 병목이다</h3>
+        <p>
+          Anthropic이 트래픽이 1,800배 폭증한 핵심 인터페이스 <code>Messages API</code>를 Python에서 Rust로 이관하며 <strong>CPU 70%·메모리 80%·지연시간(TTFT) 20%</strong>를 줄인 과정은 엔터프라이즈 AX의 본질을 정확히 짚습니다(<a href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Anthropic 11.26 ↗</a>).
+          Claude 에이전트가 핵심 요청 경로 초안을 일주일 만에 쓰고 병합 코드의 80% 이상을 작성했지만, 정작 수개월이 걸린 병목은 '코드 생성'이 아니라 살아 움직이는 기존 Python 서버와 100% 동일하게 동작함을 증명하는 <strong>섀도 트래픽·체크포인트·출력 리플레이 검증 체계</strong> 구축이었습니다.
+          ETRI의 자율 연구 AI 과학자 <strong>'유라(YouRA)'</strong> 역시 연구 수행 AI와 타당성 판정 컨트롤러를 분리하고 실패 이력을 구조화(VSA)함으로써 기존 자율 에이전트의 환각·성급한 종료 한계를 돌파했습니다(<a href="https://www.aitimes.kr/news/articleView.html?idxno=42894" target="_blank" rel="noopener">AI타임스 11.26 ↗</a>).
+        </p>
+        <p>
+          산업 현장에서도 기술 연결 이후의 '제도·비용 정합성'이 핵심 과제로 떠올랐습니다.
+          11월 26~27일 열린 <strong>'NIPA 동반성장 2026'</strong>에서 AI 에이전트 실증 8개사와 35개 우수 기업 성과가 공유되고 중기부가 중소 제조 피지컬 AI 실증에 3년간 <strong>4,400억 원</strong> 투입을 예고한 한편(<a href="https://www.mt.co.kr/index.php/tech/2026/11/26/2026112614253271868" target="_blank" rel="noopener">머니투데이 11.26 ↗</a>), 킨텍스 스마트건설·안전·AI 엑스포 현장에서는 "BIM·디지털 트윈·안전로봇의 기술 연결은 입증됐으나, 경직된 <strong>산업안전보건관리비 계상 기준과 최저가 하도급 구조</strong>가 중소·전문업체 확산을 가로막고 있다"는 목소리가 집중 제기됐습니다(<a href="https://www.kmecnews.co.kr/news/articleView.html?idxno=52988" target="_blank" rel="noopener">기계설비신문 11.26 ↗</a>).
+        </p>
+      </div>
+
+      <div class="ax-panel">
+        <h3>현장 AX 도입 점검표 5가지</h3>
+        <ul class="ax-check">
+          <li><strong>섀도 트래픽·동등성 검증 루프:</strong> AI 생성 코드·에이전트를 실서비스에 투입하기 전, 기존 시스템과 출력을 대조하는 자동 검증 파이프라인을 갖췄는가?</li>
+          <li><strong>아웃바운드 네트워크 격리 통제:</strong> 시스코 탈로스가 경고한 컨테이너 외부 우회 통신을 막기 위해 에이전트 실행 환경의 외부 웹 도구·프록시 접근을 차단했는가?</li>
+          <li><strong>프라이빗 인퍼런스·데이터 경계:</strong> 민감 고객·의료·금융 데이터 처리 시 하드웨어 격리 추론 또는 사내 로컬 양자화 모델 옵션을 확보했는가?</li>
+          <li><strong>표준·PQC·스크래핑 정비:</strong> ISO/IEC 42005·25058 품질평가 기준, 암호 자산 목록화(PQC 대비), 공공·외부 스크래핑의 공식 API 전환을 점검했는가?</li>
+          <li><strong>토큰 FinOps와 비용 반영 구조:</strong> 추론량 급증에 따른 토큰 원가와 안전·설비 도입 비용을 사업 단가·예산 항목에 명시적으로 반영했는가?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ax-reports">
+      <div class="ax-panel">
+        <h3>보고서 요약 ① · KISDI 「토큰 이코노미 &amp; 플랫폼-생성형 AI 연결」 (11.25)</h3>
+        <p>
+          토큰 단가는 빠르게 하락하지만 추론 모델·에이전트 확산으로 총 연산 수요와 AI 지출이 오히려 커지는 '토큰 이코노미' 구조 전환을 진단하고, 디지털 플랫폼의 AI 연결 방식을 AI 중심형(대화창 내 거래 완결)과 플랫폼 중심형(자체·멀티모델 내재화)으로 분류해 대응 전략을 제시했습니다.
+          <span class="src-tag" style="color:var(--desk-mute);"><a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208307" target="_blank" rel="noopener">토큰 이코노미 ↗</a> · <a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208309" target="_blank" rel="noopener">플랫폼 연결 ↗</a></span>
+        </p>
+      </div>
+
+      <div class="ax-panel">
+        <h3>보고서 요약 ② · 산업연 「글로벌 로봇산업」 &amp; 포스코경영연 「AI 경영혁신 7S」</h3>
+        <p>
+          산업연구원은 한국이 로봇 밀도 세계 1위임에도 부품·SW·양산 가치사슬에서 중국의 추격을 받고 있어 제조 데이터를 제품 경쟁력으로 전환해야 한다고 짚었고, 포스코경영연구원은 AI 도입 성패가 기술 규모보다 전략·조직·제도·인력(7S)의 유기적 재설계에 달려 있다고 분석했습니다.
+          <span class="src-tag" style="color:var(--desk-mute);"><a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208318" target="_blank" rel="noopener">산업연구원 ↗</a> · <a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208310" target="_blank" rel="noopener">포스코경영연 ↗</a></span>
+        </p>
+      </div>
+    </div>
+
+    <ul class="ax-list">
+      <li><b>행안부 '제2회 AI 정부 실험실 이용자 포럼'</b> — 공무원 150여 명 참여, HWP·PDF 변환 및 보고서 작성 'Kordoc'(서울 광진구) 대상 수상·2027 정식 서비스 반영 (<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290218" target="_blank" rel="noopener">행안부 ↗</a>)</li>
+      <li><b>범정부 공공데이터·AI 창업경진대회 왕중왕전</b> — 총 7,440개 팀 참가(전년 대비 +93% 역대 최대), 'SMART-NAMs'·'Fearless After Cancer' 대통령상 (<a href="https://eiec.kdi.re.kr/policy/materialView.do?num=290221" target="_blank" rel="noopener">행안부 ↗</a>)</li>
+      <li><b>TTA, 글로벌 MLPerf 국내 최초 전력 측정 등재</b> — 국산 AI 스토리지 SW로 데이터 병목 해소, AI 반도체 가동률 99.8% 공식 검증 (<a href="https://www.tta.or.kr" target="_blank" rel="noopener">TTA 11.23 ↗</a>)</li>
+      <li><b>ETRI 피지컬 AI·보안 핵심 기술이전 6종 공개</b> — 15mm 로봇 손끝 촉각센서·사족보행 지도·온디바이스 계단 인식·eBPF 보안 텔레메트리·멀티모달 RAG (<a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-004-261126-000014" target="_blank" rel="noopener">촉각센서 ↗</a> · <a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-004-261126-000003" target="_blank" rel="noopener">eBPF 보안 ↗</a>)</li>
+      <li><b>MS AI 'Rocket' &amp; 이종 클라우드 마이그레이션</b> — MAI-Base-2 사후학습용 비동기 강화학습 인프라 'Rocket' 공개 · ETRI 6종 클라우드 자동 이전 기술 (<a href="https://discuss.pytorch.kr/t/rocket-microsoft-ai-mai-base-2/12654" target="_blank" rel="noopener">PyTorch KR ↗</a> · <a href="https://www.itfind.or.kr/technology/sectorDetail.do?id=02-004-261126-000009" target="_blank" rel="noopener">ETRI ↗</a>)</li>
+      <li><b>과기정통부 적극행정 대통령상 수상</b> — 사기 전화범 실제 음성을 AI 보이스피싱 탐지에 활용할 수 있도록 개인정보·통신 규제 장벽 해소 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&mId=307&mPid=208&bbsSeqNo=94&nttSeqNo=3188015" target="_blank" rel="noopener">과기정통부 ↗</a>)</li>
+    </ul>
+  </section>
+
+  <!-- 14. 6면 오피니언 -->
+  <section class="sec" id="opinion" data-topic="policy infra industry telecom">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">6면 · 오피니언</div>
+        <h2 class="sec-title">Editor's View &amp; ICT 시사용어</h2>
+      </div>
+      <div class="sec-meta">핵심 화두 + 발행인 코멘트 + 원문 링크</div>
+    </div>
+
+    <div class="op-grid">
+      <article class="op-card">
+        <h3>Migrating our Messages API to Rust</h3>
+        <p class="op-q">화두: AI가 코드 80%를 일주일 만에 작성했음에도 실제 프로덕션 전환에 수개월의 섀도 검증이 필요했던 이유는?</p>
+        <p class="op-cmt"><b>Editor's View:</b> 소프트웨어 공학의 희소 자원이 '구현 속도'에서 '검증 설계 능력'으로 이동했습니다. 코드 생성 자동화가 빨라질수록 테스트·관측·롤백 체계에 대한 투자가 조직 역량의 격차를 가릅니다.</p>
+        <div class="op-by">
+          <span>Anthropic Engineering · 11.26</span>
+          <a class="op-link" href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">원문 바로가기 ↗</a>
+        </div>
+      </article>
+
+      <article class="op-card">
+        <h3>Agentic AI in organisations: Early insights from practitioner interviews</h3>
+        <p class="op-q">화두: 글로벌 조직 실무자들이 에이전틱 AI를 실제 업무에 배치하며 마주한 혜택과 거버넌스 난제는?</p>
+        <p class="op-cmt"><b>Editor's View:</b> 에이전트가 도구를 호출하고 의사결정을 대행하는 순간, 기술 도입은 IT 프로젝트가 아니라 조직의 권한 위임과 책임 경계를 다시 그리는 제도 혁신이 됩니다.</p>
+        <div class="op-by">
+          <span>OECD (KDI EIEC) · 11.26</span>
+          <a class="op-link" href="https://eiec.kdi.re.kr/policy/internationalView.do?ac=0000208324" target="_blank" rel="noopener">원문 바로가기 ↗</a>
+        </div>
+      </article>
+
+      <article class="op-card">
+        <h3>토큰 이코노미의 부상과 시사점</h3>
+        <p class="op-q">화두: 토큰 단가가 급락하는데도 기업의 전체 AI 연산 지출은 오히려 증가하는 '제본스의 역설'이 나타나는 이유는?</p>
+        <p class="op-cmt"><b>Editor's View:</b> 단가 하락이 추론 단계 다중화와 에이전트 상시 가동을 촉발하고 있습니다. 모델 선택 못지않게 과업 난이도별 라우팅과 토큰 단위 원가 회계가 기업 수익성을 좌우합니다.</p>
+        <div class="op-by">
+          <span>정보통신정책연구원(KISDI) · 11.25</span>
+          <a class="op-link" href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208307" target="_blank" rel="noopener">원문 바로가기 ↗</a>
+        </div>
+      </article>
+
+      <article class="op-card">
+        <h3>글로벌 로봇산업의 경쟁 구도 재편과 한국의 대응 전략</h3>
+        <p class="op-q">화두: 로봇 밀도 세계 1위 한국이 핵심 부품·SW·양산 경쟁에서 중국의 추격을 받으며 놓치고 있는 연결고리는?</p>
+        <p class="op-cmt"><b>Editor's View:</b> 세계 최고 수준의 현장 도입 경험을 보유하고도 이를 표준화된 학습 데이터와 국산 부품·SW 생태계로 환류시키지 못하면 단순 수요국에 머뭅니다. 현장 데이터의 자산화 체계가 시급합니다.</p>
+        <div class="op-by">
+          <span>산업연구원(KIET) · 11.26</span>
+          <a class="op-link" href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208318" target="_blank" rel="noopener">원문 바로가기 ↗</a>
+        </div>
+      </article>
+
+      <article class="op-card">
+        <h3>AI 전환기, 중소기업 R&amp;D인력의 위기와 기회</h3>
+        <p class="op-q">화두: 중소기업 67.7%가 AI를 활용 중임에도 기업부설연구소 수와 벤처 R&amp;D 투자가 동시에 줄어드는 역설은?</p>
+        <p class="op-cmt"><b>Editor's View:</b> 단순 범용 툴 사용이 곧바로 기업의 독자적 기술 흡수 역량으로 이어지지는 않습니다. 중소기업이 AI를 '인력 대체'가 아닌 '연구·설계 역량 증강'으로 쓰도록 R&amp;D 인재 유인책을 재설계해야 합니다.</p>
+        <div class="op-by">
+          <span>중소벤처기업연구원 · 11.26</span>
+          <a class="op-link" href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208320" target="_blank" rel="noopener">원문 바로가기 ↗</a>
+        </div>
+      </article>
+
+      <article class="op-card">
+        <h3>Import AI #482: AscendGYM &amp; 국가연구소 AI 불확실성 평가</h3>
+        <p class="op-q">화두: AI 과학 에이전트가 자신감 있는 오답 대신 '정직한 오차범위'를 보고하도록 보상 체계를 바꿔야 하는 이유는?</p>
+        <p class="op-cmt"><b>Editor's View:</b> 과학·공학 현장에서 가장 위험한 결과물은 틀린 답 자체가 아니라 확신에 찬 오답입니다. 불확실성을 정직하게 드러내는 평가 기준이 자율 연구 AI의 신뢰 임계점을 결정합니다.</p>
+        <div class="op-by">
+          <span>Import AI · 11.23</span>
+          <a class="op-link" href="https://importai.substack.com/p/import-ai-482-huawei-kernel-benchmarks" target="_blank" rel="noopener">원문 바로가기 ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="glossary-box">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--accent);text-transform:uppercase;margin-bottom:6px;">ICT 시사용어</div>
+      <div style="font-size:14px;line-height:1.7;">
+        <strong>토큰 이코노미(Token Economy) &amp; 반(反)증류(Anti-Distillation)</strong> — <strong>토큰 이코노미</strong>는 추론 모델과 AI 에이전트 확산에 따라 텍스트·연산의 최소 단위인 '토큰'이 AI 서비스의 사용량·원가·수익을 측정하는 핵심 경제 단위로 자리 잡은 산업 구조를 뜻한다. 한편 <strong>반증류</strong>는 선도 AI 연구소가 자사 프런티어 모델의 추론 과정(Reasoning Trace) 토큰을 외부 경쟁사가 대량 추출해 하위 모델을 모방 학습(증류)하는 행위를 기술적으로 탐지·차단하는 방어 전략으로, 최근 OpenAI·Anthropic의 반증류 강화가 중국 AI 기업의 신모델 출시 주기를 늘리는 핵심 변수로 작용하고 있다. (<a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000208307" target="_blank" rel="noopener">KISDI 11.25 ↗</a> · <a href="https://www.unite.ai/moonshot-ai-begins-distilling-from-google-and-meta-models-amid-delays/" target="_blank" rel="noopener">Unite.AI 11.26 ↗</a>)
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. 7면 일정 -->
+  <section class="sec" id="schedule" data-topic="policy infra industry telecom ax">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">7면 · 다가오는 일정</div>
+        <h2 class="sec-title">기관 발표 확인 행사 (12월 주요 일정)</h2>
+      </div>
+      <div class="sec-meta">캘린더 버튼으로 일정 저장</div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="news-tbl">
+        <thead>
+          <tr>
+            <th>일정</th>
+            <th>행사명</th>
+            <th>장소·주관</th>
+            <th>캘린더</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">12.01~02</td>
+            <td><a href="https://www.msit.go.kr/bbs/view.do?sCode=user&mId=307&mPid=208&bbsSeqNo=94&nttSeqNo=3188013" target="_blank" rel="noopener"><strong>2026 인공지능 해킹 방어대회 (ACDC)</strong></a></td>
+            <td>서울 · 과기정통부·KISA · 국산 AI 보안 과제(총상금 1.15억)</td>
+            <td><a class="cal-btn" data-cal="20261201/20261203|2026 인공지능 해킹 방어대회 (ACDC)|서울|과기정통부·KISA 주최 국산 AI 해킹 방어대회">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.02~04</td>
+            <td><a href="https://www.itfind.or.kr/seminar/seminarDetail.do?id=14888" target="_blank" rel="noopener"><strong>대한민국 소프트웨어대전 2026 (SoftWave)</strong></a></td>
+            <td>서울 코엑스 Hall A · 소프트웨이브 조직위·전자신문사 (무료)</td>
+            <td><a class="cal-btn" data-cal="20261202/20261205|대한민국 소프트웨어대전 2026 (SoftWave)|서울 코엑스 Hall A|AI·SW 전시 및 AI x SoftWave 서밋">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.03 (목)</td>
+            <td><a href="https://www.kisdi.re.kr/bbs/view.do?key=m2101113055944&bbsSn=115209" target="_blank" rel="noopener"><strong>제6회 AI·디지털 대전환 메가트렌드 컨퍼런스</strong></a></td>
+            <td>서울 포스트타워 대회의실 (10:00~17:10) · 과기정통부·KISDI</td>
+            <td><a class="cal-btn" data-cal="20261203/20261204|제6회 AI·디지털 대전환 메가트렌드 컨퍼런스|서울 포스트타워 대회의실|모두를 위한 AI, 번영의 새로운 조건 (과기정통부·KISDI)">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.03 (목)</td>
+            <td><a href="https://www.itfind.or.kr/seminar/seminarDetail.do?id=14891" target="_blank" rel="noopener"><strong>2026 AI×바이오 융합기술 파트너링데이</strong></a></td>
+            <td>서울 코엑스 컨퍼런스룸(남) 317·318호 · 연세·이화·건국대 (무료)</td>
+            <td><a class="cal-btn" data-cal="20261203/20261204|2026 AI×바이오 융합기술 파트너링데이|서울 코엑스 컨퍼런스룸(남)|AI·바이오 유망기술 19건 발표 및 1:1 상담">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.08 (화)</td>
+            <td><a href="https://www.itfind.or.kr/seminar/seminarDetail.do?id=14890" target="_blank" rel="noopener"><strong>2026년 메가프로젝트 AIDC 정책·기술 컨퍼런스</strong></a></td>
+            <td>서울 코엑스 컨퍼런스룸(남) 3F · 미래그린아이티포럼</td>
+            <td><a class="cal-btn" data-cal="20261208/20261209|2026년 메가프로젝트 AIDC 정책·기술 컨퍼런스|서울 코엑스 컨퍼런스룸(남) 3F|AIDC 특별법·구축 사례·핵심 장비 기술 동향">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.08~11</td>
+            <td><a href="https://www.itfind.or.kr/seminar/seminarDetail.do?id=14886" target="_blank" rel="noopener"><strong>6G Vision Fest 2026 / Mobile Korea 2026</strong></a></td>
+            <td>인천 송도컨벤시아 1·2홀 · 과기정통부 (ETRI AI-RAN·NTN·ISAC 시연)</td>
+            <td><a class="cal-btn" data-cal="20261208/20261212|6G Vision Fest 2026 / Mobile Korea 2026|인천 송도컨벤시아|과기정통부 주최 6G R&D 전시 및 Mobile Korea">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.09 (수)</td>
+            <td><a href="https://www.kisa.or.kr/401/form?postSeq=3810&page=1" target="_blank" rel="noopener"><strong>2026년 하반기 침해사고 정보공유 세미나</strong></a></td>
+            <td>서울 포스코타워 역삼 · 한국인터넷진흥원(KISA)</td>
+            <td><a class="cal-btn" data-cal="20261209/20261210|2026년 하반기 침해사고 정보공유 세미나|서울 포스코타워 역삼|KISA 최신 침해사고 동향 및 초동 대응 방안 공유">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.09~11</td>
+            <td><a href="https://www.itfind.or.kr/seminar/seminarDetail.do?id=14874" target="_blank" rel="noopener"><strong>2026 코리아 테크 페스티벌</strong></a></td>
+            <td>서울 코엑스 1층 B홀 · AIDC(전력·냉각)·첨단반도체·피지컬 AI</td>
+            <td><a class="cal-btn" data-cal="20261209/20261212|2026 코리아 테크 페스티벌|서울 코엑스 1층 B홀|산업기술 K-Tech3 메가 프로젝트 전시">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.16 (수)</td>
+            <td><a href="https://www.itfind.or.kr/seminar/seminarDetail.do?id=14889" target="_blank" rel="noopener"><strong>2026 인공지능반도체 미래기술 컨퍼런스 (AISFC 2026)</strong></a></td>
+            <td>서울 소공동 롯데호텔 2층 크리스탈볼룸 · 반도체공학회 동시 개최</td>
+            <td><a class="cal-btn" data-cal="20261216/20261217|2026 인공지능반도체 미래기술 컨퍼런스 (AISFC 2026)|서울 소공동 롯데호텔|AISFC 2026 및 반도체공학회 미래기술 컨퍼런스">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.18 (금)</td>
+            <td><a href="https://www.tta.or.kr" target="_blank" rel="noopener"><strong>TTA 'Agentic AI Connect 2026' 세미나</strong></a></td>
+            <td>한국정보통신기술협회(TTA) · 에이전틱 AI 기술·표준화 교류</td>
+            <td><a class="cal-btn" data-cal="20261218/20261219|TTA Agentic AI Connect 2026 세미나|한국정보통신기술협회(TTA)|에이전틱 AI 상호운용성 및 산업 적용 세미나">구글 캘린더</a></td>
+          </tr>
+          <tr>
+            <td class="num">12.21~23</td>
+            <td><a href="https://www.itfind.or.kr/seminar/seminarDetail.do?id=14879" target="_blank" rel="noopener"><strong>2026 한국소프트웨어종합학술대회 (KSC 2026)</strong></a></td>
+            <td>경주화백컨벤션센터(HICO) · 한국정보과학회 (사전등록 ~12.9)</td>
+            <td><a class="cal-btn" data-cal="20261221/20261224|2026 한국소프트웨어종합학술대회 (KSC 2026)|경주화백컨벤션센터(HICO)|범용인공지능 시대를 여는 클라우드와 소프트웨어 혁신">구글 캘린더</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 16. 꼬리말 -->
+  <footer class="colophon">
+    <div><strong>AI+ Brief 제3호</strong> | 2026.11.30(월)</div>
+    <div><strong>Editor :</strong> AEC Tech Catalyst 양승규 (<a href="https://yangkoon.com" target="_blank" rel="noopener">yangkoon.com</a>)</div>
+    <div class="colophon-legal">
+      본 Brief는 비영리 정보 공유를 목적으로 공개된 자료의 핵심 사실을 재구성해 큐레이션했으며, 모든 원문의 저작권은 각 출처에 있습니다. 권리자의 수정·삭제 요청 시 즉시 반영합니다. (문의: <a href="mailto:me@yangkoon.com">me@yangkoon.com</a>)
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  var STORAGE_READ = 'ai_brief_03_read';
+  var STORAGE_THEME = 'weekly_ai_ict_theme';
+  var STORAGE_ZOOM = 'weekly_ai_ict_zoom';
+
+  // 0. Zoom in/out (80% ~ 140%)
+  var sheetEl = document.querySelector('main.sheet');
+  var zoomOutBtn = document.getElementById('zoomOut');
+  var zoomInBtn = document.getElementById('zoomIn');
+  var zoomResetBtn = document.getElementById('zoomReset');
+  var zoomLevel = 100;
+  function applyZoom(z) {
+    zoomLevel = Math.max(80, Math.min(140, Math.round(z / 10) * 10));
+    if (sheetEl) sheetEl.style.zoom = (zoomLevel / 100);
+    if (zoomResetBtn) zoomResetBtn.textContent = zoomLevel + '%';
+    if (zoomOutBtn) zoomOutBtn.disabled = zoomLevel <= 80;
+    if (zoomInBtn) zoomInBtn.disabled = zoomLevel >= 140;
+  }
+  try {
+    var savedZoom = parseInt(localStorage.getItem(STORAGE_ZOOM), 10);
+    applyZoom(!isNaN(savedZoom) ? savedZoom : 100);
+  } catch (e) { applyZoom(100); }
+  function saveZoom(z) {
+    applyZoom(z);
+    try { localStorage.setItem(STORAGE_ZOOM, String(zoomLevel)); } catch (e) {}
+  }
+  if (zoomOutBtn) zoomOutBtn.addEventListener('click', function () { saveZoom(zoomLevel - 10); });
+  if (zoomInBtn) zoomInBtn.addEventListener('click', function () { saveZoom(zoomLevel + 10); });
+  if (zoomResetBtn) zoomResetBtn.addEventListener('click', function () { saveZoom(100); });
+
+  // 1. Dark Mode / White Mode switch
+  var themeBtn = document.getElementById('themeBtn');
+  var themeLabel = document.getElementById('themeLabel');
+  function applyTheme(t) {
+    if (t === 'dark' || t === 'light') {
+      document.documentElement.setAttribute('data-theme', t);
+    }
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+      (!document.documentElement.getAttribute('data-theme') &&
+       window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    themeBtn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+    themeLabel.textContent = isDark ? 'Dark Mode' : 'White Mode';
+  }
+  try {
+    var savedTheme = localStorage.getItem(STORAGE_THEME);
+    if (savedTheme) applyTheme(savedTheme);
+    else applyTheme('');
+  } catch (e) { applyTheme(''); }
+
+  themeBtn.addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var isDark = cur === 'dark' || (!cur && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = isDark ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem(STORAGE_THEME, next); } catch (e) {}
+  });
+
+  // 2. Expandable articles
+  var readBtns = document.querySelectorAll('[data-read-id]');
+  var readSet = {};
+  try {
+    var savedRead = JSON.parse(localStorage.getItem(STORAGE_READ) || '[]');
+    if (Array.isArray(savedRead)) {
+      savedRead.forEach(function (id) { readSet[id] = true; });
+    }
+  } catch (e) {}
+
+  readBtns.forEach(function (btn) {
+    var id = btn.getAttribute('data-read-id');
+    if (readSet[id]) btn.classList.add('read-done');
+    btn.addEventListener('click', function () {
+      var target = document.getElementById(id);
+      if (!target) return;
+      var open = target.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (id === 'lead-story') {
+        btn.textContent = open ? '전문 접기' : '지면 펼쳐 전문 읽기';
+      } else {
+        btn.textContent = open ? '접기' : '펼쳐 읽기';
+      }
+      if (open && !readSet[id]) {
+        readSet[id] = true;
+        btn.classList.add('read-done');
+        try { localStorage.setItem(STORAGE_READ, JSON.stringify(Object.keys(readSet))); } catch (e) {}
+      }
+    });
+  });
+
+  // 3. Google Calendar Links from data-cal
+  document.querySelectorAll('[data-cal]').forEach(function (a) {
+    var parts = (a.getAttribute('data-cal') || '').split('|');
+    if (parts.length < 2) return;
+    var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&dates=' + encodeURIComponent(parts[0]) +
+      '&text=' + encodeURIComponent(parts[1]) +
+      (parts[2] ? '&location=' + encodeURIComponent(parts[2]) : '') +
+      (parts[3] ? '&details=' + encodeURIComponent(parts[3]) : '');
+    a.setAttribute('href', url);
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener');
+  });
+})();
+</script>
+</body>
+</html>
