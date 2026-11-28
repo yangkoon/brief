@@ -1254,11 +1254,16 @@ table.news-tbl th {
   <section class="sec" id="infographic-summary" aria-label="30초 인포그래픽 요약" style="padding-top:22px;padding-bottom:22px;">
     <div class="sec-head" style="margin-bottom:14px;">
       <div><span class="sec-tag">30-SECOND VISUAL SUMMARY</span><h2 class="sec-title">30초 인포그래픽 요약</h2></div>
+      <div class="sec-meta">이미지를 클릭하면 크게 볼 수 있습니다</div>
     </div>
-    <a href="https://yangkoon.github.io/brief/thumbs/AI+_Brief_02_infographic.jpg" target="_blank" rel="noopener" style="display:block;border:1px solid var(--hair);background:var(--card);overflow:hidden;">
+    <div style="width:70%;max-width:760px;min-width:280px;margin:0 auto;border:1px solid var(--hair);background:var(--card);overflow:hidden;cursor:zoom-in;" onclick="document.getElementById('infographicLightbox').style.display='flex'" role="button" tabindex="0" aria-label="인포그래픽 크게 보기" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('infographicLightbox').style.display='flex';}">
       <img src="https://yangkoon.github.io/brief/thumbs/AI+_Brief_02_infographic.jpg" alt="AI+ Brief 제2호 30초 인포그래픽 요약" style="display:block;width:100%;height:auto;" loading="lazy">
-    </a>
+    </div>
   </section>
+  <div id="infographicLightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:24px;cursor:zoom-out;" onclick="this.style.display='none'" role="dialog" aria-modal="true" aria-label="인포그래픽 확대 보기">
+    <img src="https://yangkoon.github.io/brief/thumbs/AI+_Brief_02_infographic.jpg" alt="AI+ Brief 제2호 30초 인포그래픽 확대" style="max-width:96vw;max-height:92vh;object-fit:contain;box-shadow:0 12px 48px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.18);">
+  </div>
+  <script>document.addEventListener('keydown',function(e){if(e.key==='Escape'){var lb=document.getElementById('infographicLightbox');if(lb)lb.style.display='none';}});</script>
 
   <!-- 5. 1면 톱 -->
   <section class="sec sec-first" id="front" data-topic="policy industry">
