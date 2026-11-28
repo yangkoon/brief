@@ -20,6 +20,7 @@ Make.com 시나리오(Custom Webhook -> Facebook Pages / LinkedIn)에서 바로 
 
 from __future__ import annotations
 
+import re
 import argparse
 import datetime as dt
 import json
@@ -78,6 +79,8 @@ def _format_header(meta: tg.BriefMeta) -> str:
         if "·" in meta.edition_date
         else ""
     )
+    # "2026.11.26(목)" → "2026.11.26" (요일 괄호 제거)
+    date_part = re.sub(r"\s*\([^)]*\)\s*$", "", date_part)
     if edition_part and date_part:
         return f"{meta.brand} · {edition_part} ({date_part})"
     if meta.edition_date:
@@ -89,11 +92,11 @@ def build_sns_messages(meta: tg.BriefMeta) -> tuple[str, str, str]:
     header = _format_header(meta)
     hashtags = DEFAULT_HASHTAGS.get(meta.edition_key, DEFAULT_HASHTAGS["other"])
 
-    lines: list[str] = [header, meta.lead_title]
+    lines: list[str] = [meta.lead_title, header] if meta.lead_title else [header]
 
     if meta.cover_value:
         if meta.cover_label:
-            lines.append(f"■ 이번 호 숫자 ({meta.cover_label}): {meta.cover_value}")
+            lines.append(f"■ 이번 호 숫자: {meta.cover_value} ({meta.cover_label})")
         else:
             lines.append(f"■ 이번 호 숫자: {meta.cover_value}")
 
