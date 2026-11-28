@@ -109,7 +109,9 @@ def build_sns_messages(meta: tg.BriefMeta) -> tuple[str, str, str]:
     lines.append(f"전문 읽기: {meta.page_url}\n아카이브: {meta.hub_url}")
     lines.append(hashtags)
 
-    fb_msg = "\n\n".join(lines)
+    # 페이스북은 API 게시글의 빈 줄을 접어버리므로, 빈 줄에 보이지 않는
+    # 공백 문자(U+2800)를 넣어 문단 간격을 유지한다.
+    fb_msg = "\n\u2800\n".join(lines)
     li_msg = "\n\n".join(lines)
     return fb_msg, li_msg, hashtags
 
