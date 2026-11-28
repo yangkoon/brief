@@ -79,10 +79,10 @@ def _format_header(meta: tg.BriefMeta) -> str:
         else ""
     )
     if edition_part and date_part:
-        return f"[{meta.brand} · {edition_part}] ({date_part})"
+        return f"{meta.brand} · {edition_part} ({date_part})"
     if meta.edition_date:
-        return f"[{meta.brand}] ({meta.edition_date})"
-    return f"[{meta.brand}]"
+        return f"{meta.brand} ({meta.edition_date})"
+    return f"{meta.brand}"
 
 
 def build_sns_messages(meta: tg.BriefMeta) -> tuple[str, str, str]:
