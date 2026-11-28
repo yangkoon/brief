@@ -663,27 +663,13 @@ table.news-tbl th { border-top: 1.5px solid var(--rule); border-bottom: 1px soli
       </p>
     </div>
     <div class="cover-chart">
-      <div class="cover-chart-title">국내 건설인력 연령 비중 현황 (%)</div>
-      <div class="cbar-row">
-        <div class="cbar-head"><span>50·60대 건설인력 비중 (고령화 집중)</span><b class="num">63.0%</b></div>
-        <div class="cbar-track"><div class="cbar-fill" style="width:63%"></div></div>
+      <div class="cover-chart-title" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
+        <span>30초 인포그래픽 요약</span>
+        <span style="font-size:11px;font-weight:500;color:var(--cover-mute);">클릭하여 크게 보기 ↗</span>
       </div>
-      <div class="cbar-row">
-        <div class="cbar-head"><span>기타 연령대 건설인력 비중</span><b class="num">37.0%</b></div>
-        <div class="cbar-track"><div class="cbar-fill sub" style="width:37%"></div></div>
+      <div style="border:1px solid rgba(255,255,255,0.18);background:#f8f6f0;overflow:hidden;cursor:zoom-in;" onclick="document.getElementById('infographicLightbox').style.display='flex'" role="button" tabindex="0" aria-label="인포그래픽 크게 보기" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('infographicLightbox').style.display='flex';}">
+        <img src="https://yangkoon.github.io/brief/thumbs/AEC_Brief_02_infographic.jpg" alt="AEC Brief 제2호 30초 인포그래픽 요약" style="display:block;width:100%;height:auto;" loading="lazy">
       </div>
-      <div class="chart-note">막대는 0~100% 눈금 · 출처: 국토교통부 민관합동 건설 전문인력 협의체 간담회(11.24)</div>
-    </div>
-  </section>
-
-  <!-- 4-2. 30초 인포그래픽 요약 -->
-  <section class="sec" id="infographic-summary" aria-label="30초 인포그래픽 요약" style="padding-top:22px;padding-bottom:22px;">
-    <div class="sec-head" style="margin-bottom:14px;">
-      <div><span class="sec-tag">30-SECOND VISUAL SUMMARY</span><h2 class="sec-title">30초 인포그래픽 요약</h2></div>
-      <div class="sec-meta">이미지를 클릭하면 크게 볼 수 있습니다</div>
-    </div>
-    <div style="width:70%;max-width:760px;min-width:280px;margin:0 auto;border:1px solid var(--hair);background:var(--card);overflow:hidden;cursor:zoom-in;" onclick="document.getElementById('infographicLightbox').style.display='flex'" role="button" tabindex="0" aria-label="인포그래픽 크게 보기" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('infographicLightbox').style.display='flex';}">
-      <img src="https://yangkoon.github.io/brief/thumbs/AEC_Brief_02_infographic.jpg" alt="AEC Brief 제2호 30초 인포그래픽 요약" style="display:block;width:100%;height:auto;" loading="lazy">
     </div>
   </section>
   <div id="infographicLightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:24px;cursor:zoom-out;" onclick="this.style.display='none'" role="dialog" aria-modal="true" aria-label="인포그래픽 확대 보기">
